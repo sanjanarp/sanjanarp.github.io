@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Engineer & Researcher | Portfolio</title>
+    <meta name="description"
+        content="Portfolio of an AI Software Engineer specializing in Computer Vision and Machine Learning.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome (Magical Glyphs) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/magical-stars.css">
+    <link rel="stylesheet" href="css/wizarding-theme.css">
+    <link rel="stylesheet" href="css/live-lab.css">
+    <link rel="stylesheet" href="css/live-lab-playground.css">
+    <link rel="stylesheet" href="css/hogwarts-entrance.css">
+
+    <style>
+        /* Embedded critical styles for Hero to avoid FOUC */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -25%;
+            right: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, var(--blob-color-1) 0%, rgba(255, 255, 255, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.6;
+            filter: blur(60px);
+        }
+
+        .nav-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            z-index: 100;
+            backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(0px);
+            background: rgba(10, 14, 39, 0);
+            /* Explicitly transparent */
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-header.scrolled {
+            padding: 1rem 2rem;
+            background: rgba(10, 14, 39, 0.4);
+            /* Very subtle tint, mostly transparent */
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            line-height: 1.2;
+        }
+
+        .logo-name {
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: -0.02em;
+            color: #eaa555;
+            transition: color 0.3s ease;
+        }
+
+        .logo:hover .logo-name {
+            color: var(--accent-color);
+        }
+
+        .logo-tagline {
+            font-size: 0.65rem;
+            font-weight: 400;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            opacity: 0.8;
+            margin-top: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-accent);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero-desc {
+            font-size: clamp(1.15rem, 2vw, 1.35rem);
+            color: var(--text-secondary);
+            margin-top: 2rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            line-height: 1.7;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Arcane Portal Entrance Overlay -->
+    <div class="hogwarts-entrance active" id="entrance">
+        <div class="magic-particles" id="spell-particles">
+            <!-- Trail particles injected by JS -->
+        </div>
+
+        <!-- Swish and Flick Guide Path -->
+        <div class="spell-guide-container">
+            <svg class="spell-path-svg" viewBox="0 0 600 300">
+                <!-- Swish and Flick Motion: High Amplitude S-Curve -->
+                <path id="guide-path" d="M 50 200 C 200 20, 400 280, 550 100" fill="none" class="spell-path-bg" />
+                <path id="progress-path" d="M 50 200 C 200 20, 400 280, 550 100" fill="none"
+                    class="spell-path-progress" />
+
+                <!-- Helper dots -->
+                <circle cx="50" cy="200" r="4" class="spell-point start" />
+                <circle cx="550" cy="100" r="4" class="spell-point end" />
+            </svg>
+            <div class="spell-hint">Swish and Flick!</div>
+        </div>
+
+        <div class="entrance-instruction">Trace the spell to enter...</div>
+    </div>
+
+    <script src="js/spell-entrance.js"></script>
+
+    <!-- Magical Doors -->
+    <div class="magical-doors" id="doors">
+        <div class="door door-left"></div>
+        <div class="door door-right"></div>
+    </div>
+
+    <nav class="nav-header">
+        <div class="container nav-content">
+            <a href="#about" class="logo">
+                <span class="logo-name">Sanjana Ravi Prakash</span>
+                <span class="logo-tagline">AI Engineer & Researcher</span>
+            </a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#experience">Experience</a>
+                <a href="#knowledge">Skills</a>
+                <a href="#contact">Contact</a>
+                <a href="assets/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+                <a href="#" onclick="openLiveLab(); return false;" class="live-lab-nav-btn">Live Lab</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Avatar flight arena to clip horizontal overflow -->
+    <div class="flight-arena">
+        <div class="hero-avatar floating-skater">
+            <div class="avatar-wrapper">
+                <img src="assets/flying.png" alt="Flying on a magical broom" class="avatar-img">
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="about" class="hero container">
+            <!-- Magical Stars Background -->
+            <div class="stars"></div>
+            <div class="stars2"></div>
+            <div class="stars3"></div>
+
+            <div class="hero-container-inner">
+                <div class="hero-content fade-in-up">
+                    <!-- <span class="role-tag">✨ Spellcasting with Code • AI Potions • Digital Magic</span> -->
+                    <h1>Modern Magic<br><span class="text-gradient"> Written in Code</span></h1>
+                    <p class="hero-desc">
+                        Building systems more powerful than any spell 🪄
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#projects" class="btn btn-primary">View my work</a>
+                        <a href="#contact" class="btn btn-outline">Get in touch</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visual Path for Skater -->
+            <!-- <svg class="skater-path-svg" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="path-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color: #d4a574; stop-opacity: 0.5" />
+                        <stop offset="50%" style="stop-color: #b8860b; stop-opacity: 0.7" />
+                        <stop offset="100%" style="stop-color: #8b0000; stop-opacity: 0.5" />
+                    </linearGradient>
+             
+                    <mask id="hide-center">
+                        <rect width="100%" height="100%" fill="white" />
+                        <radialGradient id="fade-center" cx="50%" cy="50%" r="35%">
+                            <stop offset="0%" stop-color="black" />
+                            <stop offset="50%" stop-color="black" />
+                            <stop offset="100%" stop-color="white" />
+                        </radialGradient>
+                        <rect width="100%" height="100%" fill="url(#fade-center)" />
+                    </mask>
+                </defs>
+                <path id="infinity-path" d="" fill="none" stroke="url('#path-gradient')" stroke-width="4"
+                    stroke-linecap="round" mask="url(#hide-center)" />
+            </svg> -->
+
+        </section>
+
+
+
+
+        <!-- Projects Section -->
+        <section id="projects" class="section container">
+            <h2 class="fade-in-up">Projects</h2>
+            <div class="archives-container">
+                <!-- Project 1: AI Future Self Simulator -->
+                <div class="book-card card-navy fade-in-up">
+                    <div class="book-spine"></div>
+                    <div class="book-content">
+                        <div class="book-header">
+                            <span class="book-tag">LLM</span>
+                            <span class="book-tag">Azure OpenAI</span>
+                        </div>
+                        <h3>AI Future Self Simulator</h3>
+                        <p>AI tool predicting long-term decision outcomes using Azure OpenAI (GPT) to model scenarios
+                            and provide detailed trade-off analysis.</p>
+                        <div class="book-footer">
+                            <a href="#" target="_blank" class="book-github-link" aria-label="GitHub Repository"><i
+                                    class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: AI Personal Finance Manager -->
+                <div class="book-card card-burgundy fade-in-up" style="transition-delay: 0.1s">
+                    <div class="book-spine"></div>
+                    <div class="book-content">
+                        <div class="book-header">
+                            <span class="book-tag">Python</span>
+                            <span class="book-tag">Plaid</span>
+                        </div>
+                        <h3>AI Personal Finance Manager</h3>
+                        <p>Python/Streamlit app with Plaid integration and GPT-4 insights for automated expense
+                            tracking, predictive budgeting, and receipt scanning.</p>
+                        <div class="book-footer">
+                            <a href="#" target="_blank" class="book-github-link" aria-label="GitHub Repository"><i
+                                    class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: UML Scenario Architect -->
+                <div class="book-card card-emerald fade-in-up" style="transition-delay: 0.2s">
+                    <div class="book-spine"></div>
+                    <div class="book-content">
+                        <div class="book-header">
+                            <span class="book-tag">Grok</span>
+                            <span class="book-tag">LangChain</span>
+                        </div>
+                        <h3>UML Scenario Architect</h3>
+                        <p>Generative AI system using LangChain and Llama 3.1 to autonomously transform requirements
+                            into precise UML diagrams via Graphviz.</p>
+                        <div class="book-footer">
+                            <a href="#" target="_blank" class="book-github-link" aria-label="GitHub Repository"><i
+                                    class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: Interview Bot -->
+                <div class="book-card card-yellow fade-in-up" style="transition-delay: 0.3s">
+                    <div class="book-spine"></div>
+                    <div class="book-content">
+                        <div class="book-header">
+                            <span class="book-tag">NLP</span>
+                            <span class="book-tag">Flask</span>
+                        </div>
+                        <h3>Interview Bot</h3>
+                        <p>Interactive NLP and facial analysis tool for interview simulation using Python/Flask,
+                            featuring dynamic, context-aware follow-up questions.</p>
+                        <div class="book-footer">
+                            <a href="#" target="_blank" class="book-github-link" aria-label="GitHub Repository"><i
+                                    class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5: EdgeConnect+ (Moved to End) -->
+                <div class="book-card card-navy fade-in-up" style="transition-delay: 0.4s">
+                    <div class="book-spine"></div>
+                    <div class="book-content">
+                        <div class="book-header">
+                            <span class="book-tag">Adversarial ML</span>
+                            <span class="book-tag">PyTorch</span>
+                        </div>
+                        <h3>EdgeConnect+</h3>
+                        <p>3-stage GAN-based image restoration framework in PyTorch using edge prediction and color
+                            fusion to enhance structural and visual fidelity.</p>
+                        <div class="book-footer">
+                            <a href="#" target="_blank" class="book-github-link" aria-label="GitHub Repository"><i
+                                    class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="section container haphazard-roadmap">
+            <h2 class="fade-in-up">Experience</h2>
+
+            <div class="timeline fade-in-up">
+                <!-- Marauder's Map Decorative Elements (Moved Inside Timeline for Correct Positioning) -->
+                <div class="map-decoration fade-in">
+                    <svg class="map-path-container" viewBox="0 0 1000 900" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
+                        style="filter: drop-shadow(0 0 4px rgba(212, 165, 116, 0.6));">
+                        <!-- Path 1 (Card 1 Edge x450 to Card 2 Edge x550) -->
+                        <path id="path-1-2" d="M450,110 C500,110 500,260 550,260" stroke="none" />
+
+                        <!-- Path 2 (Card 2 Edge x550 to Card 3 Edge x450) -->
+                        <path id="path-2-3" d="M550,260 C550,410 450,360 450,410" stroke="none" />
+
+                        <!-- Path 3 (Card 3 Edge x450 to Card 4 Edge x550) -->
+                        <path id="path-3-4" d="M450,410 C500,410 500,560 550,560" stroke="none" />
+                    </svg>
+                    <div class="map-footprints" id="footprints-container">
+                        <!-- Footprints generated by JS -->
+                    </div>
+                </div>
+
+                <div class="timeline-item item-pos-1">
+                    <span class="timeline-date">Jul 2025 - Aug 2025</span>
+                    <div class="timeline-content">
+                        <h3>Graduate Research Assistant - Machine Learning</h3>
+                        <div class="timeline-role">University of Texas at Arlington, US</div>
+                        <p class="timeline-desc">Improved low-quality image super-resolution using PyTorch by replacing
+                            text-based components with image classifiers, validated on CIFAR-10 category experiments.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item item-pos-2">
+                    <span class="timeline-date">Aug 2023 - Aug 2024</span>
+                    <div class="timeline-content">
+                        <h3>Software Engineer</h3>
+                        <div class="timeline-role">Accenture, Bangalore, India</div>
+                        <p class="timeline-desc">Developed and deployed scalable .NET Core services using C#, Angular,
+                            and Azure, optimizing production rollouts and reducing deployment delays by 25%.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item item-pos-3">
+                    <span class="timeline-date">Jun 2023 - Jul 2023</span>
+                    <div class="timeline-content">
+                        <h3>Web Developer Intern</h3>
+                        <div class="timeline-role">Geekbytes Solutions, Bangalore, India</div>
+                        <p class="timeline-desc">Launched a responsive website that increased traffic by 43%; designed
+                            high-satisfaction user interfaces using Figma to enhance usability.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item item-pos-4">
+                    <span class="timeline-date">Aug 2022 - Dec 2022</span>
+                    <div class="timeline-content">
+                        <h3>Machine Learning Intern</h3>
+                        <div class="timeline-role">Veripure Industry, Bangalore, India</div>
+                        <p class="timeline-desc">Deployed a Python/OpenCV computer vision pipeline for chemical color
+                            classification across web and Android apps, reducing manual testing time by 40%.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <br><br><br>
+        <!-- Great Hall of Knowledge (Education & Skills) -->
+        <section id="knowledge" class="section container">
+            <h2 class="fade-in-up">Skills</h2>
+            <div class="knowledge-grid fade-in-up">
+
+                <!-- Left Column: Education -->
+                <div class="knowledge-column left-knowledge">
+                    <h3 class="knowledge-subtitle">Academic Wizardry</h3>
+                    <div class="admissions-grid">
+                        <div class="admission-letter">
+                            <div class="letter-envelope">
+                                <div class="letter-flap"></div>
+                                <div class="wax-seal"></div>
+                            </div>
+                            <div class="letter-content">
+                                <div class="letter-inner">
+                                    <span class="letter-category">Graduate Degree</span>
+                                    <h3>Master of Science</h3>
+                                    <div class="letter-role">UT Arlington, US</div>
+                                    <span class="letter-date">2024 - 2026</span>
+                                    <p>GPA: 3.88 / 4.0</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="admission-letter">
+                            <div class="letter-envelope">
+                                <div class="letter-flap"></div>
+                                <div class="wax-seal"></div>
+                            </div>
+                            <div class="letter-content">
+                                <div class="letter-inner">
+                                    <span class="letter-category">Undergraduate</span>
+                                    <h3>Bachelor of Engineering</h3>
+                                    <div class="letter-role">VTU, India</div>
+                                    <span class="letter-date">2019 - 2023</span>
+                                    <p>GPA: 9.22 / 10.0</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vertical Partition Line -->
+                <div class="knowledge-divider"></div>
+
+                <!-- Right Column: Skills -->
+                <div class="knowledge-column right-knowledge">
+                    <h3 class="knowledge-subtitle">Mastered Spells</h3>
+                    <div class="runes-grid">
+                        <div class="rune-card">
+                            <div class="rune-tablet tablet-midnight">
+                                <div class="rune-symbol hallows-cloak">
+                                    <svg viewBox="0 0 100 100">
+                                        <path d="M50 10 L90 85 L10 85 Z" fill="none" stroke="currentColor"
+                                            stroke-width="4" />
+                                    </svg>
+                                </div>
+                                <div class="rune-glow"></div>
+                            </div>
+                            <!-- Initial View (Text) -->
+                            <div class="rune-info">
+                                <!-- <span class="rune-tag">Languages</span> -->
+                                <h3>Languages</h3>
+                                <p class="rune-list">Python, Java, C++, JS, SQL</p>
+                            </div>
+                            <!-- Expanded View (Icons) -->
+                            <div class="rune-expanded-content">
+                                <i class="fab fa-python" title="Python"></i>
+                                <i class="fab fa-java" title="Java"></i>
+                                <i class="fas fa-code" title="C++"></i>
+                                <i class="fab fa-js" title="JavaScript"></i>
+                                <i class="fas fa-database" title="SQL"></i>
+                                <i class="fab fa-html5" title="HTML/CSS"></i>
+                            </div>
+                        </div>
+
+                        <div class="rune-card">
+                            <div class="rune-tablet tablet-emerald">
+                                <div class="rune-symbol hallows-stone">
+                                    <svg viewBox="0 0 100 100">
+                                        <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor"
+                                            stroke-width="4" />
+                                    </svg>
+                                </div>
+                                <div class="rune-glow"></div>
+                            </div>
+                            <div class="rune-info">
+                                <!-- <span class="rune-tag">Frameworks</span> -->
+                                <h3>AI & Frameworks</h3>
+                                <p class="rune-list">PyTorch, LangChain, OpenCV, Flask, NLP, Flutter</p>
+                            </div>
+                            <div class="rune-expanded-content">
+                                <i class="fas fa-fire" title="PyTorch"></i>
+                                <i class="fas fa-link" title="LangChain"></i>
+                                <i class="fas fa-eye" title="OpenCV"></i>
+                                <i class="fas fa-brain" title="NLP/LLM"></i>
+                                <i class="fas fa-flask" title="Flask"></i>
+                                <i class="fab fa-flutter" title="Flutter"></i>
+                            </div>
+                        </div>
+
+                        <div class="rune-card">
+                            <div class="rune-tablet tablet-gold">
+                                <div class="rune-symbol hallows-wand">
+                                    <svg viewBox="0 0 100 100">
+                                        <line x1="50" y1="10" x2="50" y2="90" stroke="currentColor" stroke-width="6"
+                                            stroke-linecap="round" />
+                                    </svg>
+                                </div>
+                                <div class="rune-glow"></div>
+                            </div>
+                            <div class="rune-info">
+                                <!-- <span class="rune-tag">Tools</span> -->
+                                <h3>Tools & Apps</h3>
+                                <p class="rune-list">Azure, Firebase, Figma, SQL Server, Tableau</p>
+                            </div>
+                            <div class="rune-expanded-content">
+                                <i class="fab fa-microsoft" title="Azure/VS"></i>
+                                <i class="fas fa-cloud" title="Firebase"></i>
+                                <i class="fab fa-figma" title="Figma"></i>
+                                <i class="fas fa-server" title="SQL Server"></i>
+                                <i class="fas fa-chart-pie" title="Tableau"></i>
+                                <i class="fab fa-android" title="Android Studio"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Archived: Potion Cabinet (Preserved for future use) -->
+                    <!--
+                    <div class="potions-grid">
+                        <div class="potion-card">
+                            <div class="potion-vial vial-midnight">
+                                <div class="potion-cork"></div>
+                                <div class="vial-bulb">
+                                    <div class="potion-liquid"></div>
+                                    <div class="potion-bubbles">
+                                        <div class="bubble"></div>
+                                        <div class="bubble"></div>
+                                        <div class="bubble"></div>
+                                        <div class="bubble"></div>
+                                        <div class="bubble"></div>
+                                    </div>
+                                </div>
+                                <div class="potion-label">LANGUAGES</div>
+                            </div>
+                            <div class="potion-info">
+                                <span class="potion-tag">Languages</span>
+                                <h3>Incantations</h3>
+                                <p>Python, Java, C++, JS, SQL</p>
+                            </div>
+                        </div>
+                        <div class="potion-card">
+                            <div class="potion-vial vial-emerald">
+                                <div class="potion-cork"></div>
+                                <div class="vial-bulb">
+                                    <div class="potion-liquid"></div>
+                                    <div class="potion-bubbles">
+                                        <div class="bubble"></div>
+                                        <div class="bubble"></div>
+                                        <div class="bubble"></div>
+                                        <div class="bubble"></div>
+                                        <div class="bubble"></div>
+                                    </div>
+                                </div>
+                                <div class="potion-label">FRAMEWORKS</div>
+                            </div>
+                            <div class="potion-info">
+                                <span class="potion-tag">Foundations</span>
+                                <h3>Frameworks</h3>
+                                <p>PyTorch, LangChain, Azure</p>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+                </div>
+
+            </div>
+        </section>
+
+
+
+        <!-- Footer -->
+        <!-- Owl Post Contact Section -->
+        <section id="contact" class="owlery-section">
+            <h2 class="fade-in-up">Contact</h2>
+            <div class="owlery-container fade-in-up">
+
+                <!-- The Parchment Scroll -->
+                <div class="parchment-scroll">
+
+                    <!-- Owl on Perch (Top Right) -->
+                    <!-- Owl on Perch (Top Right) -->
+                    <div class="owl-perch">
+                        <svg class="owl-graphic" viewBox="0 0 200 200" width="140" height="140"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <!-- Drop Shadow Filter -->
+                            <defs>
+                                <filter id="owlShadow" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+                                    <feOffset dx="2" dy="4" result="offsetblur" />
+                                    <feComponentTransfer>
+                                        <feFuncA type="linear" slope="0.3" />
+                                    </feComponentTransfer>
+                                    <feMerge>
+                                        <feMergeNode />
+                                        <feMergeNode in="SourceGraphic" />
+                                    </feMerge>
+                                </filter>
+                            </defs>
+
+                            <!-- Branch -->
+                            <path d="M-10,175 Q100,170 210,180 L210,195 Q100,185 -10,195 Z" fill="#4a3b2a" />
+
+                            <g filter="url(#owlShadow)">
+                                <!-- Tail Feathers -->
+                                <path d="M80,160 L100,190 L120,160 Z" fill="#8b5e3c" />
+
+                                <!-- Body Base -->
+                                <ellipse cx="100" cy="115" rx="55" ry="65" fill="#c29463" />
+
+                                <!-- Belly Patch (Lighter) -->
+                                <ellipse cx="100" cy="125" rx="35" ry="45" fill="#daae7c" />
+
+                                <!-- Wings -->
+                                <path d="M45,115 Q30,140 45,160 Q60,140 55,100 Z" fill="#8b5e3c" /> <!-- Left Wing -->
+                                <path d="M155,115 Q170,140 155,160 Q140,140 145,100 Z" fill="#8b5e3c" />
+                                <!-- Right Wing -->
+
+                                <!-- Feet -->
+                                <path d="M85,175 L85,185 M92,175 L92,185 M78,175 L78,185" stroke="#e07f2a"
+                                    stroke-width="4" stroke-linecap="round" />
+                                <path d="M115,175 L115,185 M122,175 L122,185 M108,175 L108,185" stroke="#e07f2a"
+                                    stroke-width="4" stroke-linecap="round" />
+
+                                <!-- Head/Face -->
+                                <circle cx="100" cy="75" r="50" fill="#c29463" /> <!-- Head Back -->
+                                <ellipse cx="100" cy="75" rx="45" ry="40" fill="#f0e6d2" /> <!-- Face Disc -->
+
+                                <!-- Eyes -->
+                                <circle cx="80" cy="70" r="14" fill="#1a1a1a" />
+                                <circle cx="120" cy="70" r="14" fill="#1a1a1a" />
+
+                                <!-- Eye Glints -->
+                                <circle cx="76" cy="66" r="4" fill="white" />
+                                <circle cx="116" cy="66" r="4" fill="white" />
+                                <circle cx="82" cy="74" r="1.5" fill="white" opacity="0.7" />
+                                <circle cx="122" cy="74" r="1.5" fill="white" opacity="0.7" />
+
+                                <!-- Beak -->
+                                <path d="M100,80 L94,92 L100,98 L106,92 Z" fill="#e07f2a" />
+
+                                <!-- Ear Tufts (Subtle) -->
+                                <path d="M55,45 Q50,25 65,40 Z" fill="#c29463" />
+                                <path d="M145,45 Q150,25 135,40 Z" fill="#c29463" />
+                            </g>
+                        </svg>
+                    </div>
+
+                    <h2>Send an Owl</h2>
+                    <p class="owlery-subtitle">Currently open for research collaborations and magical ventures</p>
+
+                    <form class="owl-post-form">
+                        <div class="form-group">
+                            <input type="text" id="name" placeholder=" " required class="quill-input">
+                            <label for="name">Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" placeholder=" " required class="quill-input">
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" rows="4" placeholder=" " required class="quill-input"></textarea>
+                            <label for="message">Message</label>
+                        </div>
+
+                        <button type="submit" class="wax-seal-btn">
+                            <span class="seal-text">Send</span>
+                            <div class="seal-ring"></div>
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+
+
+            <!-- Floating Feathers (Decor) -->
+            <div class="floating-feather f1">🪶</div>
+            <div class="floating-feather f2">🪶</div>
+            <div class="floating-feather f3">🪶</div>
+        </section>
+
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <div class="social-links owl-socials">
+                <a href="mailto:sanjanarp26@gmail.com" aria-label="Gmail">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="20" height="16" x="2" y="4" rx="2" />
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                    </svg>
+                </a>
+                <a href="https://linkedin.com/in/sanjana-rp" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                        <rect width="4" height="12" x="2" y="9" />
+                        <circle cx="4" cy="4" r="2" />
+                    </svg>
+                </a>
+                <a href="https://github.com/sanjanarp" aria-label="GitHub">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                        <path d="M9 18c-4.51 2-5-2-7-2" />
+                    </svg>
+                </a>
+            </div>
+            <p class="copyright">&copy; 2026 Sanjana. Mischief Managed.</p>
+        </footer>
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/entrance.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/marauders-map.js"></script>
+    <script src="js/owl-post.js"></script>
+    <script src="js/live-lab.js"></script>
+</body>
+
+</html>

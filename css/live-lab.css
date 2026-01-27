@@ -1,0 +1,624 @@
+/* Neural Research Workbench - Wizarding Theme Match */
+
+/* Overlay Container - Magical Backdrop */
+#live-lab-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(10, 6, 20, 0.98), rgba(18, 9, 29, 0.98));
+    backdrop-filter: blur(15px) saturate(180%);
+    z-index: 100000;
+    overflow: hidden;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+#live-lab-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+/* Modal Container - Enchanted Design */
+.neural-lab-modal {
+    width: 95%;
+    max-width: 1600px;
+    height: 90vh;
+    background: linear-gradient(145deg, #0a0614 0%, #12091d 100%);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow:
+        0 0 80px rgba(212, 165, 116, 0.25),
+        0 20px 100px rgba(0, 0, 0, 0.6),
+        inset 0 0 100px rgba(212, 165, 116, 0.03);
+    border: 1px solid rgba(212, 165, 116, 0.3);
+    animation: modalSlideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: scale(0.92) translateY(40px);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Subtle Grid Background */
+.neural-lab-modal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(212, 165, 116, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 165, 116, 0.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Main Container */
+.neural-lab-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 70px 1fr;
+    z-index: 2;
+}
+
+/* Header Bar - Magical Glass Effect */
+.neural-lab-header {
+    background: linear-gradient(135deg, rgba(10, 6, 20, 0.95), rgba(18, 9, 29, 0.95));
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(212, 165, 116, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    box-shadow:
+        0 4px 30px rgba(0, 0, 0, 0.3),
+        0 1px 0 rgba(212, 165, 116, 0.1);
+}
+
+.neural-lab-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.neural-lab-title h1 {
+    font-size: 22px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #eaa355, #d4a574);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+    font-family: 'Crimson Text', serif;
+}
+
+.neural-icon {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, #eaa355, #d4a574);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    box-shadow: 0 4px 15px rgba(212, 165, 116, 0.3);
+}
+
+/* Status Badge - Elegant Design */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 6px;
+    color: rgba(16, 185, 129, 0.9);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-left: 15px;
+    position: relative;
+}
+
+.status-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Close Button - Text Style */
+.neural-close-btn,
+.neural-lab-close {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid rgba(212, 165, 116, 0.3);
+    background: rgba(212, 165, 116, 0.08);
+    color: #d4a574;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+}
+
+.neural-close-btn:hover,
+.neural-lab-close:hover {
+    background: rgba(212, 165, 116, 0.15);
+    border-color: rgba(212, 165, 116, 0.5);
+    box-shadow: 0 0 20px rgba(212, 165, 116, 0.25);
+    transform: translateY(-1px);
+}
+
+/* Content Grid - 3 Panel Layout */
+.neural-lab-content {
+    display: grid;
+    grid-template-columns: 280px 1fr 400px;
+    gap: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Sidebar - Enchanted Card Design */
+.neural-sidebar {
+    background: linear-gradient(180deg, rgba(10, 6, 20, 0.6), rgba(18, 9, 29, 0.8));
+    border-right: 1px solid rgba(212, 165, 116, 0.1);
+    padding: 25px 0;
+    overflow-y: auto;
+    backdrop-filter: blur(10px);
+}
+
+.sidebar-section {
+    padding: 0 20px;
+}
+
+.sidebar-section h3 {
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(234, 163, 85, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 15px;
+    padding-left: 8px;
+}
+
+/* Project Nav Items - Magical Cards */
+.project-nav-item {
+    padding: 14px 16px;
+    margin-bottom: 8px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(212, 165, 116, 0.03);
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-nav-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, #eaa355, #d4a574);
+    transform: scaleY(0);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-nav-item:hover {
+    background: rgba(212, 165, 116, 0.08);
+    border-color: rgba(212, 165, 116, 0.2);
+    transform: translateX(4px);
+}
+
+.project-nav-item:hover::before {
+    transform: scaleY(1);
+}
+
+.project-nav-item.active {
+    background: rgba(212, 165, 116, 0.12);
+    border-color: rgba(212, 165, 116, 0.3);
+    box-shadow:
+        0 4px 15px rgba(212, 165, 116, 0.15),
+        inset 0 0 20px rgba(212, 165, 116, 0.05);
+}
+
+.project-nav-item.active::before {
+    transform: scaleY(1);
+}
+
+.project-nav-item span {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+    display: block;
+}
+
+/* Main Panel - Premium Content Area */
+.neural-main-panel {
+    padding: 35px 40px;
+    overflow-y: auto;
+    background: rgba(10, 6, 20, 0.4);
+}
+
+/* Project Detail Section */
+.project-detail-section {
+    display: none;
+}
+
+.project-detail-section.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Detail Header */
+.detail-header {
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid rgba(212, 165, 116, 0.15);
+}
+
+.detail-title {
+    font-size: 32px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ffffff, #eaa355);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+    font-family: 'Crimson Text', serif;
+}
+
+.detail-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Tech Badges - Magical Pills */
+.tech-badge {
+    padding: 8px 16px;
+    background: linear-gradient(135deg, rgba(212, 165, 116, 0.1), rgba(234, 163, 85, 0.1));
+    border: 1px solid rgba(212, 165, 116, 0.3);
+    border-radius: 20px;
+    color: rgba(234, 163, 85, 0.95);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tech-badge:hover {
+    background: linear-gradient(135deg, rgba(212, 165, 116, 0.2), rgba(234, 163, 85, 0.2));
+    border-color: rgba(212, 165, 116, 0.5);
+    box-shadow: 0 0 20px rgba(212, 165, 116, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Detail Blocks */
+.detail-block {
+    margin-bottom: 35px;
+    padding: 25px;
+    background: rgba(15, 9, 24, 0.5);
+    border-radius: 16px;
+    border: 1px solid rgba(212, 165, 116, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.detail-block:hover {
+    border-color: rgba(212, 165, 116, 0.2);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.block-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #eaa355;
+    margin-bottom: 15px;
+    letter-spacing: -0.3px;
+}
+
+.detail-text {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* Metrics Table - Elegant Design */
+.metrics-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 5px;
+}
+
+.metrics-table thead th {
+    text-align: left;
+    padding: 16px 20px;
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(234, 163, 85, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    background: transparent;
+    border-bottom: 2px solid rgba(212, 165, 116, 0.2);
+}
+
+.metrics-table tbody tr {
+    border-bottom: 1px solid rgba(212, 165, 116, 0.08);
+    transition: all 0.3s ease;
+}
+
+.metrics-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.metrics-table tbody tr:hover {
+    background: rgba(212, 165, 116, 0.05);
+}
+
+.metrics-table td {
+    padding: 18px 20px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.metrics-table td:first-child {
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.95);
+    width: 30%;
+}
+
+.metrics-table td:nth-child(2) {
+    width: 35%;
+}
+
+.metrics-table td:last-child {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 13px;
+}
+
+.metric-value {
+    color: #eaa355;
+    font-weight: 700;
+}
+
+/* Visualization Panel - Premium Right Side */
+.neural-viz-panel {
+    background: linear-gradient(180deg, rgba(10, 6, 20, 0.7), rgba(18, 9, 29, 0.9));
+    border-left: 1px solid rgba(212, 165, 116, 0.1);
+    padding: 25px 20px;
+    overflow-y: auto;
+    backdrop-filter: blur(10px);
+}
+
+/* Viz Sections */
+.viz-section {
+    margin-bottom: 25px;
+}
+
+.viz-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(234, 163, 85, 0.9);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    padding-left: 8px;
+    border-left: 3px solid #eaa355;
+}
+
+.viz-container {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid rgba(212, 165, 116, 0.15);
+    transition: all 0.3s ease;
+}
+
+.viz-container:hover {
+    border-color: rgba(212, 165, 116, 0.25);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Terminal Window - Magical */
+.terminal-window {
+    background: #000000;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(212, 165, 116, 0.2);
+}
+
+.terminal-header {
+    background: linear-gradient(135deg, rgba(10, 6, 20, 0.9), rgba(18, 9, 29, 0.9));
+    padding: 12px 16px;
+    display: flex;
+    gap: 8px;
+    border-bottom: 1px solid rgba(212, 165, 116, 0.1);
+}
+
+.terminal-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.terminal-dot.red {
+    background: linear-gradient(135deg, #740001, #9e1b1b);
+    box-shadow: 0 0 8px rgba(116, 0, 1, 0.5);
+}
+
+.terminal-dot.yellow {
+    background: linear-gradient(135deg, #eaa355, #d4a574);
+    box-shadow: 0 0 8px rgba(212, 165, 116, 0.5);
+}
+
+.terminal-dot.green {
+    background: linear-gradient(135deg, #10b981, #059669);
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+}
+
+.terminal-content {
+    padding: 16px;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    line-height: 1.6;
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.terminal-line {
+    margin-bottom: 4px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.terminal-line.info {
+    color: #d4a574;
+}
+
+.terminal-line.success {
+    color: #10b981;
+}
+
+.terminal-line.error {
+    color: #ff6b6b;
+}
+
+/* Scrollbar Styling - Magical */
+.neural-sidebar::-webkit-scrollbar,
+.neural-main-panel::-webkit-scrollbar,
+.neural-viz-panel::-webkit-scrollbar,
+.terminal-content::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.neural-sidebar::-webkit-scrollbar-track,
+.neural-main-panel::-webkit-scrollbar-track,
+.neural-viz-panel::-webkit-scrollbar-track,
+.terminal-content::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.neural-sidebar::-webkit-scrollbar-thumb,
+.neural-main-panel::-webkit-scrollbar-thumb,
+.neural-viz-panel::-webkit-scrollbar-thumb,
+.terminal-content::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(212, 165, 116, 0.3), rgba(234, 163, 85, 0.3));
+    border-radius: 3px;
+}
+
+.neural-sidebar::-webkit-scrollbar-thumb:hover,
+.neural-main-panel::-webkit-scrollbar-thumb:hover,
+.neural-viz-panel::-webkit-scrollbar-thumb:hover,
+
+/* Live Lab Navbar Button */
+.live-lab-nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(212, 165, 116, 0.1);
+    border: 1px solid rgba(212, 165, 116, 0.4);
+    border-radius: 20px;
+    color: #eaa355 !important;
+    /* Force override nav link color */
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(5px);
+    text-decoration: none;
+    box-shadow: 0 0 10px rgba(212, 165, 116, 0.1);
+}
+
+.live-lab-nav-btn:hover {
+    background: rgba(212, 165, 116, 0.2);
+    border-color: #eaa355;
+    box-shadow:
+        0 0 15px rgba(212, 165, 116, 0.4),
+        0 0 30px rgba(212, 165, 116, 0.2),
+        inset 0 0 10px rgba(212, 165, 116, 0.1);
+    transform: translateY(-2px);
+    color: #fff !important;
+    text-shadow: 0 0 8px rgba(234, 163, 85, 0.8);
+}
+
+.live-lab-nav-btn::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: #10b981;
+    /* Online status dot */
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Close Button Hover - Matching Lumos Effect */
+.neural-close-btn:hover,
+.neural-lab-close:hover {
+    background: rgba(212, 165, 116, 0.25);
+    border-color: #eaa355;
+    color: #fff;
+    box-shadow:
+        0 0 15px rgba(212, 165, 116, 0.3),
+        inset 0 0 10px rgba(212, 165, 116, 0.1);
+    transform: translateY(-2px);
+    text-shadow: 0 0 5px rgba(234, 163, 85, 0.6);
+}

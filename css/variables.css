@@ -1,0 +1,57 @@
+:root {
+    /* 
+       Color Palette - "Hogwarts Grand Hall" Theme
+       Rich burgundy, royal gold, and midnight blue
+    */
+    --bg-color: #0a0e27;
+    /* Deep midnight blue-black */
+    --surface-color: rgba(30, 20, 45, 0.8);
+    /* Rich dark purple */
+    --surface-hover: rgba(45, 30, 60, 0.95);
+
+    --text-primary: #f4f1ea;
+    /* Warm parchment */
+    --text-secondary: #c9c0b0;
+    /* Aged parchment */
+    --text-accent: #d4a574;
+    /* Warm gold */
+
+    /* Magical Blobs - Hogwarts House Colors */
+    --blob-color-1: rgba(116, 0, 1, 0.25);
+    /* Gryffindor burgundy */
+    --blob-color-2: rgba(26, 71, 42, 0.2);
+    /* Slytherin green */
+    --blob-color-3: rgba(212, 165, 116, 0.15);
+    /* Warm gold */
+
+    /* Text Gradient - White to Gold to Pink Shimmer */
+    --gradient-text: linear-gradient(135deg, #ffffff 0%, #ff9600 33%, #db86a6 66%, #ffffff 100%);
+
+    /* Typography */
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-heading: 'Inter', sans-serif;
+
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 5rem;
+    --spacing-xl: 10rem;
+
+    /* Borders & Glass */
+    --border-color: rgba(0, 0, 0, 0.05);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.6);
+    --glass-highlight: 1px solid rgba(255, 255, 255, 0.9);
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.02);
+    --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.04);
+    --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.06);
+
+    --radius-md: 16px;
+    --radius-lg: 32px;
+
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-smooth: 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Light mode support could be added here, but starting with Premium Dark */

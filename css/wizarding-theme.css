@@ -1,0 +1,1924 @@
+/* Wizarding World Theme Overrides - Enchanted Archives (Hermione Library Theme) */
+
+/* Magical Stat Cards */
+.stat-card {
+    background: rgba(30, 20, 45, 0.7) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(212, 165, 116, 0.3) !important;
+    box-shadow: 0 0 20px rgba(116, 0, 1, 0.3) !important;
+}
+
+.stat-card:hover {
+    background: rgba(45, 30, 60, 0.9) !important;
+    border-color: rgba(212, 165, 116, 0.6) !important;
+    box-shadow: 0 0 30px rgba(212, 165, 116, 0.5), 0 8px 16px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Global Section Headers - Standardized to Match Experience */
+.section h2,
+.owlery-section h2 {
+    color: #eaa355;
+    /* User's preferred Amber Gold */
+    text-shadow: 0 0 25px rgba(234, 163, 85, 0.6);
+    /* Large Glow */
+    margin-bottom: 2rem;
+    padding-left: 2rem;
+    /* Left alignment match */
+    position: relative;
+    z-index: 20;
+    font-family: 'Crimson Text', serif;
+    font-size: 2.5rem;
+    /* Increased size */
+    text-align: left;
+    letter-spacing: 0.05em;
+}
+
+.stat-number {
+    color: #d4a574;
+    font-weight: 700;
+}
+
+.stat-label {
+    color: #c9c4b8;
+}
+
+/* Enchanted Archives Container */
+.archives-container {
+    display: grid;
+    /* Strict 3-column layout as requested */
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 3rem;
+    row-gap: 3rem;
+    padding: 2rem;
+    perspective: 1200px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+@media (max-width: 1100px) {
+    .archives-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 700px) {
+    .archives-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Book Card Design (Hermione's Library) */
+.book-card {
+    position: relative;
+    height: 320px;
+    max-width: 340px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, rgba(42, 27, 61, 0.95) 0%, rgba(26, 22, 37, 0.98) 100%);
+    border-radius: 8px 16px 16px 8px;
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(234, 163, 85, 0.1);
+    border: 1px solid rgba(234, 163, 85, 0.15);
+    transform-style: preserve-3d;
+    backdrop-filter: blur(10px);
+}
+
+.book-spine {
+    width: 30px;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.4) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(0, 0, 0, 0.4) 100%);
+    border-right: 1px solid rgba(212, 165, 116, 0.3);
+    position: relative;
+    flex-shrink: 0;
+}
+
+.book-spine::after {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    width: 80%;
+    height: 2px;
+    background: rgba(212, 165, 116, 0.3);
+    box-shadow: 0 40px rgba(212, 165, 116, 0.3), 0 80px rgba(212, 165, 116, 0.3);
+}
+
+.book-content {
+    flex: 1;
+    padding: 1.5rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+.book-tag {
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #eaa355;
+    padding: 0.35rem 0.75rem;
+    border: 1px solid rgba(234, 163, 85, 0.3);
+    background: rgba(234, 163, 85, 0.08);
+    display: inline-block;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.book-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.book-card h3 {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #eaa355;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+    transition: all 0.3s ease;
+}
+
+.book-card p {
+    font-size: 0.85rem;
+    color: #d4c5b0;
+    line-height: 1.7;
+    margin-bottom: 0;
+    opacity: 0.9;
+}
+
+.book-footer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.book-github-link {
+    color: #eaa355;
+    font-size: 1.25rem;
+    text-decoration: none;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(234, 163, 85, 0.05);
+    border: 1px solid rgba(234, 163, 85, 0.2);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.book-github-link:hover {
+    color: #ffffff;
+    background: rgba(234, 163, 85, 0.2);
+    border-color: rgba(234, 163, 85, 0.8);
+    transform: scale(1.15) rotate(-8deg);
+    box-shadow: 0 0 20px rgba(234, 163, 85, 0.4), inset 0 0 10px rgba(234, 163, 85, 0.2);
+    filter: drop-shadow(0 0 5px rgba(234, 163, 85, 0.5));
+}
+
+.book-rune {
+    font-size: 1.5rem;
+    filter: drop-shadow(0 0 8px rgba(234, 163, 85, 0.5));
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Book Aesthetics - Hogwarts House Colors */
+.card-navy {
+    border-left: 14px solid rgba(106, 153, 255, 0.6);
+    background: linear-gradient(135deg, rgba(26, 42, 75, 0.9) 0%, rgba(26, 22, 37, 0.98) 100%);
+}
+
+.card-burgundy {
+    border-left: 14px solid rgba(220, 53, 69, 0.6);
+    background: linear-gradient(135deg, rgba(77, 29, 29, 0.9) 0%, rgba(26, 22, 37, 0.98) 100%);
+}
+
+.card-emerald {
+    border-left: 14px solid rgba(40, 167, 69, 0.6);
+    background: linear-gradient(135deg, rgba(29, 75, 42, 0.9) 0%, rgba(26, 22, 37, 0.98) 100%);
+}
+
+.card-yellow {
+    border-left: 14px solid rgba(255, 193, 7, 0.7);
+    background: linear-gradient(135deg, rgba(120, 95, 35, 0.88) 0%, rgba(26, 22, 37, 0.98) 100%);
+}
+
+.card-plum {
+    border-left: 14px solid rgba(234, 163, 85, 0.4);
+    background: linear-gradient(135deg, rgba(58, 37, 71, 0.95) 0%, rgba(26, 22, 37, 0.98) 100%);
+}
+
+.card-midnight {
+    border-left: 14px solid rgba(234, 163, 85, 0.33);
+    background: linear-gradient(135deg, rgba(15, 23, 43, 0.95) 0%, rgba(26, 22, 37, 0.98) 100%);
+}
+
+/* Hover Interactions */
+.book-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(234, 163, 85, 0.3), 0 0 0 2px rgba(234, 163, 85, 0.4);
+    border-color: rgba(234, 163, 85, 0.6);
+}
+
+.book-card:hover h3 {
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(234, 163, 85, 0.6);
+}
+
+.book-card:hover .book-tag {
+    background: rgba(234, 163, 85, 0.15);
+    border-color: rgba(234, 163, 85, 0.5);
+    color: #ffffff;
+}
+
+.book-card:hover .book-rune {
+    transform: scale(1.4) rotate(15deg);
+    filter: drop-shadow(0 0 20px rgba(234, 163, 85, 0.9));
+}
+
+/* Yellow card icon needs extra visibility */
+.card-yellow .book-rune {
+    filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.8)) drop-shadow(0 0 4px rgba(255, 255, 255, 0.6));
+}
+
+.card-yellow:hover .book-rune {
+    filter: drop-shadow(0 0 25px rgba(255, 215, 0, 1)) drop-shadow(0 0 8px rgba(255, 255, 255, 0.9));
+}
+
+/* Admission Letters (Education) */
+.admissions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+/* Admission Letters (Education) - Enhanced 3D Opening */
+.knowledge-grid .admissions-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    /* Reduced from 4.5rem to save space */
+    padding: 2.5rem 0 1rem;
+    /* Tightened top padding */
+}
+
+.admission-letter {
+    position: relative;
+    width: 220px;
+    height: 140px;
+    margin: 0 auto;
+    cursor: pointer;
+    perspective: 1500px;
+    animation: letterFloat 5s infinite ease-in-out;
+}
+
+.letter-envelope {
+    position: absolute;
+    inset: 0;
+    background: #e6dec5;
+    border-radius: 4px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    transition: all 2.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 5;
+    transform-style: preserve-3d;
+}
+
+.letter-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 110px solid transparent;
+    border-right: 110px solid transparent;
+    border-top: 80px solid #dcd3b8;
+    transform-origin: top;
+    transition: transform 2.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+}
+
+.wax-seal {
+    width: 36px;
+    height: 36px;
+    background: #740001;
+    border-radius: 50%;
+    border: 3px solid #5a0000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    position: absolute;
+    top: 55px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 11;
+    transition: transform 2.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease;
+}
+
+.wax-seal::after {
+    content: 'H';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #e5c08d;
+    font-family: 'Crimson Text', serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.letter-content {
+    position: absolute;
+    inset: 5px;
+    background: #f4f1ea;
+    padding: 1.25rem 1rem;
+    border-radius: 2px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(0);
+    opacity: 0;
+    transition: all 3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.admission-letter:hover .letter-flap,
+.admission-letter.open .letter-flap {
+    transform: rotateX(160deg);
+}
+
+.admission-letter:hover .wax-seal,
+.admission-letter.open .wax-seal {
+    transform: translateX(-50%) rotateX(160deg);
+    opacity: 0.5;
+}
+
+.admission-letter:hover .letter-content,
+.admission-letter.open .letter-content {
+    transform: translateY(0) translateX(45px) rotate(4deg);
+    opacity: 1;
+    z-index: 12;
+}
+
+.admission-letter:hover .letter-envelope,
+.admission-letter.open .letter-envelope {
+    transform: translateX(-15px) scale(0.95);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Magical Sparkles for Letters */
+.admission-letter::before,
+.admission-letter::after {
+    content: '✨';
+    position: absolute;
+    font-size: 1.2rem;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.admission-letter:hover::before {
+    top: -40px;
+    left: 10px;
+    opacity: 1;
+    animation: sparkleFloat 2s infinite alternate;
+}
+
+.admission-letter:hover::after {
+    bottom: -10px;
+    right: 10px;
+    opacity: 1;
+    animation: sparkleFloat 2s infinite alternate-reverse;
+}
+
+@keyframes sparkleFloat {
+    0% {
+        transform: scale(0.8) rotate(0);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1.2) rotate(20deg);
+        opacity: 1;
+    }
+}
+
+.letter-inner {
+    text-align: center;
+    color: #2c2c2c;
+}
+
+.letter-category {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #740001;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.letter-inner h3 {
+    font-family: 'Crimson Text', serif;
+    font-size: 1rem;
+    color: #2c2c2c !important;
+    margin-bottom: 0.3rem;
+    line-height: 1.2;
+}
+
+.letter-role {
+    font-style: italic;
+    font-size: 0.8rem;
+    margin-bottom: 0.2rem;
+}
+
+.letter-date {
+    font-weight: 700;
+    font-size: 0.7rem;
+    display: block;
+}
+
+/* Potions Cabinet (Archived / Preservation Mode) */
+/* (Keeping all .potion-* and .vial-* styles intact as requested) */
+
+/* Enchanted Runes (Mastered Spells) - Primary UI */
+.runes-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem 1.5rem;
+    padding: 1rem 0;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.rune-card:nth-child(1) {
+    grid-column: 1 / 3;
+}
+
+.rune-card:nth-child(2) {
+    grid-column: 3 / 5;
+}
+
+.rune-card:nth-child(3) {
+    grid-column: 2 / 4;
+}
+
+.rune-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    perspective: 1000px;
+    position: relative;
+    /* Ensure expansion doesn't clip */
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    background: transparent;
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+/* Expansion & Glassmorphism on Hover */
+.rune-card:hover {
+    transform: translateY(-5px) scale(1.05);
+    background: rgba(26, 22, 37, 0.6);
+    /* Semi-transparent dark bg */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(212, 165, 116, 0.2);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    /* Bring to front */
+}
+
+.rune-tablet {
+    width: 100px;
+    height: 120px;
+    background: #1a1625;
+    /* Dark basalt stone */
+    background-image:
+        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+        url("https://www.transparenttextures.com/patterns/dark-matter.png");
+    border: 2px solid rgba(212, 165, 116, 0.2);
+    border-radius: 8px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    box-shadow:
+        10px 10px 20px rgba(0, 0, 0, 0.5),
+        inset 0 0 15px rgba(0, 0, 0, 0.8);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-style: preserve-3d;
+}
+
+.rune-tablet::before {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border: 1px solid rgba(212, 165, 116, 0.1);
+    border-radius: 12px;
+    opacity: 0;
+    transition: all 0.6s ease;
+}
+
+.rune-symbol {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.8s ease;
+    user-select: none;
+}
+
+.rune-symbol svg {
+    width: 100%;
+    height: 100%;
+    stroke: rgba(255, 255, 255, 0.1);
+    /* Engraved look */
+    filter: drop-shadow(1px 1px 1px rgba(255, 255, 255, 0.05)) drop-shadow(-1px -1px 1px rgba(0, 0, 0, 0.8));
+    transition: all 0.6s ease;
+}
+
+/* ... (Glow styles remain same) ... */
+.rune-glow {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    border-radius: 8px;
+    transition: all 0.6s ease;
+    pointer-events: none;
+    mix-blend-mode: screen;
+}
+
+/* Tablet House Energies */
+.tablet-midnight .rune-glow {
+    background: radial-gradient(circle, rgba(255, 140, 66, 0.3) 0%, transparent 70%);
+}
+
+.tablet-emerald .rune-glow {
+    background: radial-gradient(circle, rgba(255, 140, 66, 0.35) 0%, transparent 70%);
+}
+
+.tablet-gold .rune-glow {
+    background: radial-gradient(circle, rgba(255, 140, 66, 0.4) 0%, transparent 70%);
+}
+
+/* Hover Interactions (The Lumos Effect) */
+.rune-card:hover .rune-tablet {
+    transform: rotateY(-15deg) rotateX(10deg) translateY(-10px) scale(0.9);
+    /* Sharper Tablet rotation, slightly smaller to make room */
+    border-color: rgba(212, 165, 116, 0.6);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(212, 165, 116, 0.2);
+}
+
+.rune-card:hover .rune-symbol svg {
+    stroke: #ff8c42;
+}
+
+.tablet-midnight:hover .rune-symbol svg {
+    filter: drop-shadow(0 0 8px #ff8c42) drop-shadow(0 0 20px rgba(255, 140, 66, 0.6));
+}
+
+.tablet-emerald:hover .rune-symbol svg {
+    filter: drop-shadow(0 0 8px #ff8c42) drop-shadow(0 0 20px rgba(255, 140, 66, 0.6));
+}
+
+.tablet-gold:hover .rune-symbol svg {
+    filter: drop-shadow(0 0 8px #ff8c42) drop-shadow(0 0 20px rgba(255, 140, 66, 0.6));
+}
+
+.rune-card:hover .rune-glow {
+    opacity: 1;
+}
+
+.rune-card:hover .rune-tablet::before {
+    opacity: 1;
+    inset: -10px;
+}
+
+.rune-tag {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gold);
+    opacity: 0.7;
+    margin-bottom: 0.3rem;
+    display: block;
+}
+
+.rune-info h3 {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.1rem;
+    color: #eaa355;
+    /* text-shadow: 0 0 25px rgba(234, 163, 85, 0.6); */
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.rune-card:hover h3 {
+    color: #ffffff;
+    text-shadow: rgba(255, 140, 66, 0.9) 0px 0px 12px;
+    transform: translateY(20px);
+}
+
+/* Expanded Content - Logic */
+.rune-list {
+    transition: all 0.3s ease;
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 50px;
+    margin: 0;
+}
+
+.rune-card:hover .rune-list {
+    opacity: 0;
+    transform: translateY(10px);
+    max-height: 0;
+    overflow: hidden;
+    margin: 0;
+}
+
+/* Hide Rune Tablet (Background) on Hover */
+.rune-card:hover .rune-tablet {
+    transform: rotateY(-15deg) rotateX(10deg) translateY(-10px) scale(0.5);
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Hide Rune Symbol on Hover */
+.rune-card:hover .rune-symbol {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+/* Icons Container - Positioned over the tablet where symbol was */
+.rune-expanded-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    row-gap: 20px;
+    opacity: 0;
+    /* Position absolutely relative to the CARD, but centered over the tablet */
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5) rotateY(-10deg);
+    transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 100;
+    width: 85%;
+    max-width: 400px;
+    pointer-events: none;
+    padding: 20px;
+    background: radial-gradient(circle at center, rgba(255, 140, 66, 0.05) 0%, transparent 70%);
+    border-radius: 20px;
+}
+
+.rune-card:hover .rune-expanded-content {
+    opacity: 1;
+    /* Move to center and scale up */
+    transform: translate(-50%, -50%) scale(1.08) rotateY(0deg);
+    pointer-events: auto;
+    background: radial-gradient(circle at center, rgba(255, 140, 66, 0.08) 0%, transparent 70%);
+}
+
+/* Icon Styling */
+.rune-expanded-content i {
+    font-size: 2.2rem;
+    color: #eaa355;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 0 rgba(255, 140, 66, 0));
+    margin: 5px;
+    cursor: pointer;
+    opacity: 0.8;
+    animation: iconFadeIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+    position: relative;
+}
+
+.rune-expanded-content i:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.rune-expanded-content i:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.rune-expanded-content i:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.rune-expanded-content i:nth-child(4) {
+    animation-delay: 0.25s;
+}
+
+.rune-expanded-content i:nth-child(5) {
+    animation-delay: 0.3s;
+}
+
+.rune-expanded-content i:nth-child(6) {
+    animation-delay: 0.35s;
+}
+
+@keyframes iconFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.7) rotate(-5deg);
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 0 rgba(255, 140, 66, 0));
+    }
+
+    to {
+        opacity: 0.8;
+        transform: translateY(0) scale(1) rotate(0deg);
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 8px rgba(255, 140, 66, 0.4));
+    }
+}
+
+.rune-expanded-content i:hover {
+    /* color: #f5deb3; */
+    color: #eaa355;
+    text-shadow: 0 0 25px rgba(234, 163, 85, 0.6);
+
+    opacity: 1;
+    transform: translateY(-5px) scale(1.15);
+    /* text-shadow: 0 0 10px rgba(255, 140, 66, 0.9), 0 0 20px rgba(255, 140, 66, 0.6); */
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 12px rgba(255, 140, 66, 0.7));
+}
+
+@keyframes iconPulse {
+
+    0%,
+    100% {
+        filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 20px rgba(255, 215, 0, 0.8)) drop-shadow(0 0 40px rgba(229, 192, 141, 0.6));
+    }
+
+    50% {
+        filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 25px rgba(255, 215, 0, 1)) drop-shadow(0 0 50px rgba(229, 192, 141, 0.8));
+    }
+}
+
+/* Brand Colors on Hover */
+.rune-expanded-content i.devicon-python-plain:hover {
+    color: #3776ab;
+}
+
+.rune-expanded-content i.devicon-java-plain:hover {
+    color: #f89820;
+}
+
+.rune-expanded-content i.devicon-javascript-plain:hover {
+    color: #f7df1e;
+}
+
+.rune-expanded-content i.devicon-mysql-plain:hover {
+    color: #00758f;
+}
+
+.rune-expanded-content i.devicon-pytorch-original:hover {
+    color: #ee4c2c;
+}
+
+.rune-expanded-content i.devicon-azure-plain:hover {
+    color: #0089d6;
+}
+
+.rune-expanded-content i.devicon-git-plain:hover {
+    color: #f05032;
+}
+
+.rune-expanded-content i.devicon-docker-plain:hover {
+    color: #2496ed;
+}
+
+.rune-expanded-content i.devicon-amazonwebservices-plain-wordmark:hover {
+    color: #ff9900;
+}
+
+/* Potions Cabinet (Skills) - High-Fidelity Artifacts */
+.potions-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 0;
+}
+
+.potion-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    perspective: 1000px;
+}
+
+.potion-vial {
+    width: 90px;
+    height: 90px;
+    position: relative;
+    overflow: visible;
+    margin-bottom: 2.5rem;
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.vial-bulb {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    /* Purely circular body */
+    overflow: hidden;
+    /* CRITICAL: Clips the liquid */
+    z-index: 2;
+    box-shadow:
+        inset 0 -10px 20px rgba(0, 0, 0, 0.4),
+        inset 0 5px 15px rgba(255, 255, 255, 0.1),
+        0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+/* Glass Neck */
+.potion-vial::before {
+    content: '';
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 40px;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+    z-index: 5;
+}
+
+/* Parchment Label on Glass */
+.potion-label {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #e6dec5;
+    /* Parchment ivory */
+    color: #4e342e;
+    /* Deep ink brown */
+    padding: 2px 8px;
+    font-size: 0.55rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    border: 1px solid #c9c0b0;
+    z-index: 20;
+    white-space: nowrap;
+    opacity: 0.9;
+    pointer-events: none;
+    transition: all 0.4s ease;
+}
+
+.potion-cork {
+    position: absolute;
+    top: -42px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 28px;
+    height: 12px;
+    background: #5d4037;
+    border-radius: 3px 3px 2px 2px;
+    z-index: 10;
+    box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Internal Liquid in Sphere */
+.potion-liquid {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60%;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
+}
+
+/* Liquid Meniscus (Surface curve) inside the bulb */
+.potion-liquid::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 0;
+    width: 100%;
+    height: 16px;
+    background: inherit;
+    filter: brightness(1.3);
+    border-radius: 50%;
+    z-index: 3;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.vial-midnight .potion-liquid {
+    background: linear-gradient(to top, #0f172a, #2563eb);
+}
+
+.vial-emerald .potion-liquid {
+    background: linear-gradient(to top, #064e3b, #10b981);
+}
+
+/* Animated Bubbles - Contained in bulb */
+.potion-bubbles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.bubble {
+    position: absolute;
+    bottom: -10px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    animation: bubbleRiseSphere 5s infinite ease-in;
+}
+
+.bubble:nth-child(1) {
+    left: 20%;
+    width: 4px;
+    height: 4px;
+    animation-delay: 0s;
+}
+
+.bubble:nth-child(2) {
+    left: 45%;
+    width: 7px;
+    height: 7px;
+    animation-delay: 1.2s;
+}
+
+.bubble:nth-child(3) {
+    left: 70%;
+    width: 3px;
+    height: 3px;
+    animation-delay: 2.5s;
+}
+
+.bubble:nth-child(4) {
+    left: 35%;
+    width: 5px;
+    height: 5px;
+    animation-delay: 3.8s;
+}
+
+.bubble:nth-child(5) {
+    left: 60%;
+    width: 4px;
+    height: 4px;
+    animation-delay: 0.5s;
+}
+
+/* Magical Hover Effects */
+.potion-card:hover .vial-bulb {
+    transform: scale(1.1) rotate(5deg);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.potion-card:hover .potion-liquid {
+    height: 85%;
+}
+
+.potion-card:hover .potion-vial::after {
+    height: 75%;
+    opacity: 0.6;
+}
+
+/* Specific House Glimmer/Aura */
+.vial-midnight:hover .vial-bulb {
+    box-shadow: 0 0 30px rgba(37, 99, 235, 0.4), inset 0 0 20px rgba(37, 99, 235, 0.2);
+    animation: auraPulseMidnight 2s infinite ease-in-out;
+}
+
+.vial-emerald:hover .vial-bulb {
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.4), inset 0 0 20px rgba(16, 185, 129, 0.2);
+    animation: auraPulseEmerald 2s infinite ease-in-out;
+}
+
+.potion-card:hover .potion-label {
+    transform: translate(-50%, -50%) scale(1.1) rotate(-5deg);
+    opacity: 1;
+}
+
+@keyframes auraPulseMidnight {
+
+    0%,
+    100% {
+        box-shadow: 0 0 30px rgba(37, 99, 235, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 50px rgba(37, 99, 235, 0.5);
+    }
+}
+
+@keyframes auraPulseEmerald {
+
+    0%,
+    100% {
+        box-shadow: 0 0 30px rgba(16, 185, 129, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 50px rgba(16, 185, 129, 0.5);
+    }
+}
+
+@keyframes auraPulseBurgundy {
+
+    0%,
+    100% {
+        box-shadow: 0 0 30px rgba(244, 63, 94, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 50px rgba(244, 63, 94, 0.5);
+    }
+}
+
+@keyframes bubbleRiseSphere {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translateY(-70px) scale(1.4);
+        opacity: 0;
+    }
+}
+
+@keyframes waveMotion {
+    0% {
+        transform: translateX(0) scaleY(1);
+    }
+
+    50% {
+        transform: translateX(-5%) scaleY(1.05);
+    }
+
+    100% {
+        transform: translateX(0) scaleY(1);
+    }
+}
+
+@keyframes letterFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(1deg);
+    }
+}
+
+@keyframes bubbleWave {
+    from {
+        transform: translateX(0) scaleY(1);
+    }
+
+    to {
+        transform: translateX(-50%) scaleY(1.2);
+    }
+}
+
+/* Enchanted Scrolls (Experience Timeline) - Compact 2-Column Layout */
+.timeline {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    border-left: 1px solid rgba(212, 165, 116, 0.1);
+    padding-left: 2rem;
+    margin-top: 2rem;
+}
+
+.timeline-item {
+    position: relative;
+    padding: 1.2rem 1.5rem;
+    background: rgba(42, 27, 61, 0.3);
+    border: 1px solid rgba(212, 165, 116, 0.15);
+    border-radius: 8px;
+    margin-bottom: 0;
+    /* Gaps handled by grid */
+    backdrop-filter: blur(5px);
+    transition: all 0.4s ease;
+    /* height: 100%; */
+}
+
+
+
+/* Hide line-joining symbols for 2-column layout to simplify */
+.timeline-item::after {
+    display: none;
+}
+
+.timeline-item:hover {
+    background: rgba(212, 165, 116, 0.05);
+    border-color: rgba(212, 165, 116, 0.4);
+    transform: translateY(-5px);
+}
+
+.timeline-content h3 {
+    font-family: 'Crimson Text', serif;
+    color: #e5c08d;
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+}
+
+.timeline-role {
+    color: #c9c4b8;
+    font-style: italic;
+    margin-bottom: 0.75rem;
+    font-size: 0.85rem;
+}
+
+.timeline-desc {
+    font-size: 0.8rem;
+    color: rgba(201, 196, 184, 0.8);
+    line-height: 1.5;
+}
+
+.timeline-date {
+    font-weight: 700;
+    color: #d4a574;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+@media (max-width: 992px) {
+    .timeline {
+        grid-template-columns: 1fr;
+        padding-left: 3rem;
+    }
+
+    .timeline-item::before {
+        left: -3.5rem;
+    }
+}
+
+/* Nav Wand Effect */
+.nav-links a {
+    position: relative;
+    padding: 0.5rem 1rem;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #d4a574, transparent);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px rgba(212, 165, 116, 0.8);
+}
+
+.nav-links a:hover::after {
+    width: 80%;
+}
+
+/* Great Hall of Knowledge (Merged Layout) */
+#knowledge {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.knowledge-grid {
+    display: grid;
+    grid-template-columns: 1fr 2px 1fr;
+    gap: 2rem;
+    align-items: start;
+    margin-top: 1rem;
+}
+
+.knowledge-divider {
+    width: 2px;
+    height: 100%;
+    min-height: 280px;
+    /* Shortened to allow container to shrink */
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    box-shadow: 0 0 15px rgba(212, 165, 116, 0.4);
+    opacity: 0.3;
+}
+
+.knowledge-subtitle {
+    font-family: 'Crimson Text', serif;
+    color: var(--gold);
+    font-size: 1.4rem;
+    text-align: center;
+    /* margin-bottom: 2.5rem; */
+    /* Tightened gap between subtitle and grid */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+.knowledge-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Adjusting existing grids for the split view */
+.knowledge-grid .admissions-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4.5rem;
+    /* Increased to prevent vertical overlap when letters float/open */
+    padding: 3rem 0 1rem;
+    /* Clear subtitle and add space below */
+}
+
+.knowledge-grid .potions-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 0;
+}
+
+.knowledge-grid .admission-letter {
+    margin: 0 auto;
+}
+
+/* Responsive Stacking */
+@media (max-width: 992px) {
+    .knowledge-grid {
+        grid-template-columns: 1fr;
+        gap: 5rem;
+    }
+
+    .knowledge-grid .runes-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .knowledge-divider {
+        width: 100%;
+        height: 2px;
+        min-height: 2px;
+        background: linear-gradient(to right, transparent, var(--gold), transparent);
+        margin: 2rem 0;
+    }
+}
+
+/* Haphazard Marauder's Roadmap (Experience) - Perfected Centripetal Edition */
+.haphazard-roadmap {
+    position: relative;
+    padding: 0.5rem 1.5rem 1rem;
+    /* Gapless vertical layout */
+    margin-top: 1rem;
+    overflow: visible;
+}
+
+/* Removed redundant .haphazard-roadmap h2 rule */
+
+.map-decoration {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.map-path-container {
+    position: absolute;
+    top: 4.5rem;
+    left: 0;
+    width: 100%;
+    height: 480px;
+    opacity: 0.4;
+    z-index: 1;
+}
+
+#roadmap-path {
+    stroke: var(--text-accent);
+    stroke-width: 1.8;
+    stroke-dasharray: 4, 8;
+    filter: drop-shadow(0 0 3px rgba(212, 165, 116, 0.3));
+}
+
+.map-footprints {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+}
+
+
+
+/* Haphazard Marauder's Roadmap (Experience) - Premium Wide Anti-Overlap Edition */
+/* Haphazard Marauder's Roadmap (Experience) - Premium Wide Anti-Overlap Edition */
+.haphazard-roadmap {
+    position: relative;
+    min-height: 600px;
+    /* Locked height for premium density & zero overlap */
+    padding: 1.5rem 0;
+    margin-top: 1rem;
+    overflow: visible;
+}
+
+/* Removed redundant .haphazard-roadmap h2 rule - using global instead */
+
+.map-decoration {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: auto;
+    /* Remove stacking context restriction */
+}
+
+.map-path-container {
+    position: absolute;
+    top: 0;
+    /* Aligned with timeline start */
+    left: 0;
+    width: 100%;
+    height: 900px;
+    opacity: 0.5;
+    z-index: 1;
+}
+
+/* ... (skipping some lines) ... */
+
+/* Cinematic Marauder's Footprints - Generated by JS */
+/* Cinematic Marauder's Footprints - Generated by JS */
+.marauder-step {
+    position: absolute;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    z-index: 5;
+    /* Rotation and Position handled by JS inline styles */
+}
+
+.marauder-inner {
+    display: block;
+    font-size: 1.5rem;
+    /* Reverted to 1.5rem */
+    color: transparent;
+    text-shadow: 0 0 0 rgba(234, 163, 85, 0.8);
+    /* Make emoji look like ink */
+    opacity: 0;
+    animation: stepFade 4s infinite;
+    /* Centered in the 0x0 parent */
+    transform-origin: center;
+}
+
+@keyframes stepFade {
+    0% {
+        opacity: 0;
+        transform: scale(0.4);
+        /* Start tiny */
+        filter: drop-shadow(0 0 0 transparent);
+    }
+
+    10% {
+        opacity: 1;
+        transform: scale(0.8);
+        /* Land small */
+        filter: drop-shadow(0 0 3px #eaa355);
+    }
+
+    25% {
+        opacity: 1;
+        transform: scale(0.9);
+        /* Subtle pulse */
+        filter: drop-shadow(0 0 6px #eaa355);
+    }
+
+    50% {
+        opacity: 0;
+        transform: scale(0.8);
+        filter: drop-shadow(0 0 2px #eaa355);
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Haphazard Mastery Absolute Layout - Corner Connections */
+.haphazard-roadmap .timeline {
+    position: relative;
+    width: 100%;
+    height: 900px;
+    /* Expanded height for breathing room */
+    margin-top: 2.5rem;
+    z-index: 10;
+    border-left: none;
+    /* Removed the faint vertical line */
+}
+
+.haphazard-roadmap .timeline-item {
+    position: absolute;
+    width: 40%;
+    /* Percentage width locks geometry with SVG paths */
+    padding: 1.5rem 2rem;
+    background: rgba(30, 20, 45, 0.95);
+    /* Increased opacity to mask lines */
+    border: 1px solid rgba(212, 165, 116, 0.45);
+    border-radius: 12px;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.8);
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 10;
+}
+
+/* Nodes: L, R (Corner Link Start), L, R */
+.item-pos-1 {
+    top: 0;
+    left: 5%;
+    transform: rotate(-0.3deg);
+}
+
+.item-pos-2 {
+    top: 250px;
+    right: 5%;
+    transform: rotate(0.6deg);
+}
+
+.item-pos-3 {
+    top: 500px;
+    left: 8%;
+    transform: rotate(-0.5deg);
+}
+
+.item-pos-4 {
+    top: 750px;
+    right: 8%;
+    transform: rotate(0.3deg);
+}
+
+.haphazard-roadmap .timeline-content h3 {
+    font-size: 1.35rem;
+    margin-bottom: 0.4rem;
+    color: var(--text-primary);
+}
+
+.haphazard-roadmap .timeline-role {
+    font-size: 1.05rem;
+    margin-bottom: 0.7rem;
+    color: var(--text-accent);
+}
+
+.haphazard-roadmap .timeline-desc {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: rgba(244, 241, 234, 0.98);
+}
+
+.haphazard-roadmap .timeline-date {
+    font-size: 0.85rem;
+    margin-bottom: 0.3rem;
+    color: var(--text-accent);
+    opacity: 1;
+    font-weight: 700;
+}
+
+@media (max-width: 1200px) {
+    .haphazard-roadmap .timeline-item {
+        max-width: 420px;
+    }
+}
+
+@media (max-width: 950px) {
+    .haphazard-roadmap {
+        min-height: auto;
+        padding: 2rem 1.5rem;
+    }
+
+    .haphazard-roadmap .timeline {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        position: static;
+        gap: 3.5rem;
+        margin-top: 1rem;
+    }
+
+    .haphazard-roadmap .timeline-item {
+        position: static;
+        align-self: center;
+        margin: 0 !important;
+        transform: none !important;
+        max-width: 100%;
+    }
+
+    .map-path-container,
+    .map-footprints {
+        display: none;
+    }
+}
+
+
+
+/* Final Scrollbar Refinement */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0a0e27;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #4a1d4b, #d4a574, #4a1d4b);
+    border: 3px solid #0a0e27;
+    border-radius: 10px;
+}
+
+/* =========================================
+   Owl Post Contact Section (Owlery)
+   ========================================= */
+
+.owlery-section {
+    padding: 6rem 1.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    /* Dark mystical background behind the scroll */
+    /* background: radial-gradient(circle at 50% 30%, #1a1525 0%, #0d0b16 100%); */
+    perspective: 1000px;
+}
+
+.owlery-container {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+/* Parchment Scroll Container */
+.parchment-scroll {
+    position: relative;
+    background: #f4ecda;
+    /* Parchment texture color */
+    background-image:
+        linear-gradient(to right, rgba(212, 165, 116, 0.2) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(212, 165, 116, 0.2) 1px, transparent 1px);
+    /* Subtle grid guidelines for writing */
+    background-size: 100% 3rem;
+    /* Line height */
+    padding: 1.5rem;
+
+    /* padding: 5rem 3rem 4rem; */
+    border-radius: 4px;
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.8),
+        inset 0 0 60px rgba(166, 124, 82, 0.3);
+    /* Aged paper inner shadow */
+
+    transform: rotate(-1deg);
+    /* Slight organic tilt */
+}
+
+/* Torn Edge Effect (Pseudo-elements or Clip Path) */
+.parchment-scroll::before,
+.parchment-scroll::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background-color: #f4ecda;
+    /* Jagged edge pattern */
+    mask-image: linear-gradient(45deg, transparent 35%, black 65%), linear-gradient(-45deg, transparent 35%, black 65%);
+    mask-size: 20px 20px;
+    mask-repeat: repeat-x;
+    mask-position: bottom;
+}
+
+.parchment-scroll::before {
+    top: -10px;
+    transform: rotate(180deg);
+    /* Top edge */
+}
+
+.parchment-scroll::after {
+    bottom: -10px;
+    /* Bottom edge */
+}
+
+/* Owl Perch - Positioning */
+.owl-perch {
+    position: absolute;
+    top: -50px;
+    right: -40px;
+    z-index: 20;
+    filter: drop-shadow(5px 10px 10px rgba(0, 0, 0, 0.5));
+    transition: transform 0.3s ease;
+}
+
+.owl-perch:hover {
+    transform: rotate(2deg) scale(1.02);
+}
+
+.owl-graphic {
+    display: block;
+    overflow: visible;
+}
+
+/* Typography on Scroll */
+.parchment-scroll h2 {
+    font-family: 'Cinzel Decorative', serif;
+    color: #4a2c2a;
+    /* Deep ink color */
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    text-shadow: none;
+    /* Ink doesn't glow like screens */
+    border-bottom: 2px solid #8b5e3c;
+    padding-bottom: 1rem;
+    display: inline-block;
+    width: 100%;
+}
+
+.owlery-subtitle {
+    text-align: center;
+    color: #6b4c3e;
+    font-size: 1rem;
+    /* margin-bottom: 3rem; */
+    font-style: italic;
+    opacity: 0.8;
+}
+
+/* Form Inputs - Quill Style */
+.owl-post-form {
+    display: flex;
+    flex-direction: column;
+    /* gap: 2rem; */
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.quill-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(139, 94, 60, 0.3);
+    /* Underline only */
+    font-family: 'Courier Prime', 'Special Elite', monospace;
+    /* Typewriter/Handwritten feel */
+    font-size: 1.1rem;
+    color: #2c1810;
+    padding: 0.5rem 0;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.quill-input:focus {
+    border-bottom-color: #8b5e3c;
+    /* Darker ink on focus */
+}
+
+/* Floating Label Animation */
+.form-group label {
+    position: absolute;
+    top: 0.5rem;
+    left: 0;
+    font-size: 1rem;
+    color: #8b5e3c;
+    pointer-events: none;
+    transition: 0.3s ease all;
+    font-family: 'Cinzel', serif;
+}
+
+.quill-input:focus~label,
+.quill-input:not(:placeholder-shown)~label {
+    top: -1.2rem;
+    font-size: 0.8rem;
+    color: #4a2c2a;
+    font-weight: bold;
+}
+
+/* Wax Seal Button */
+.wax-seal-btn {
+    align-self: flex-end;
+    /* Right align like a stamp */
+    /* margin-top: 1rem; */
+    width: 80px;
+    height: 80px;
+    border: none;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #da3e3e, #9e1b1b);
+    color: #580000;
+    font-family: 'Cinzel Decorative', serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.4),
+        inset 0 0 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wax-seal-btn::before {
+    /* Inner ring effect */
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border: 2px dashed rgba(88, 0, 0, 0.3);
+    border-radius: 50%;
+}
+
+.wax-seal-btn:hover {
+    transform: scale(1.05) rotate(5deg);
+}
+
+.wax-seal-btn:active {
+    transform: scale(0.95);
+}
+
+.seal-text {
+    transform: rotate(-10deg);
+}
+
+/* Main Footer Styling */
+.main-footer {
+    text-align: center;
+    padding: 1rem 1.5rem;
+    position: relative;
+    z-index: 10;
+}
+
+/* Social Links on Parchment */
+.owl-socials {
+    display: flex;
+    /* Added flexbox */
+    margin-top: 1rem;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.owl-socials a {
+    color: #a67c52;
+    /* Muted Bronze/Gold */
+    font-weight: 700;
+    text-shadow: none;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 0 transparent);
+}
+
+.owl-socials a:hover {
+    color: #eaa355;
+    /* Rich Amber Gold (Matches User Request) */
+    filter: drop-shadow(0 0 8px rgba(234, 163, 85, 0.6));
+    /* Warm Glow */
+    transform: translateY(-3px) scale(1.1);
+}
+
+/* Removed duplicate rule */
+
+.copyright {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: #d4a5748c;
+    /* Bright Gold for visibility */
+    opacity: 0.9;
+}
+
+/* Floating Feathers */
+.floating-feather {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.4;
+    pointer-events: none;
+    animation: featherFloat 8s ease-in-out infinite;
+    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.2));
+}
+
+.f1 {
+    top: 40%;
+    left: 5%;
+    animation-delay: 0s;
+}
+
+.f2 {
+    top: 60%;
+    right: 8%;
+    animation-delay: -3s;
+    transform: scale(0.8);
+}
+
+.f3 {
+    bottom: 5%;
+    left: 15%;
+    animation-delay: -5s;
+    transform: rotate(45deg);
+}
+
+@keyframes featherFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(10deg);
+    }
+}
+
+@media (max-width: 650px) {
+    .parchment-scroll {
+        padding: 4rem 1.5rem 3rem;
+        transform: none;
+        /* No tilt on mobile for fit */
+    }
+
+    .owl-perch {
+        top: -60px;
+        right: 0;
+        left: 0;
+        margin: auto;
+        /* Center owl on mobile */
+        width: 120px;
+    }
+}
+
+/* Flight Animation */
+.flying-away {
+    animation: owlFly 3s forwards cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+@keyframes owlFly {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    20% {
+        transform: translate(-10px, 10px) scale(1.1);
+        /* Crouch before launch */
+    }
+
+    100% {
+        transform: translate(300px, -300px) scale(0.5);
+        /* Fly top right and far away */
+        opacity: 0;
+    }
+}
+
+/* Loading Dots Animation */
+.loading-dots::after {
+    content: ' .';
+    animation: dots 1.5s steps(5, end) infinite;
+}
+
+@keyframes dots {
+
+    0%,
+    20% {
+        content: ' .';
+    }
+
+    40% {
+        content: ' ..';
+    }
+
+    60% {
+        content: ' ...';
+    }
+
+    80%,
+    100% {
+        content: ' ';
+    }
+}
+
+.chat-message.loading-dots {
+    color: #eaa355;
+    font-style: italic;
+    opacity: 0.8;
+}

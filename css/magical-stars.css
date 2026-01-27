@@ -1,0 +1,51 @@
+/* Magical Stars Background */
+.stars,
+.stars2,
+.stars3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 2px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.stars {
+    background: transparent;
+    animation: twinkle 100s linear infinite;
+    opacity: 0.6;
+}
+
+.stars::after {
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    background: transparent;
+    box-shadow: inherit;
+}
+
+.stars2 {
+    background: transparent;
+    animation: twinkle 150s linear infinite;
+    opacity: 0.4;
+}
+
+.stars3 {
+    background: transparent;
+    animation: twinkle 200s linear infinite;
+    opacity: 0.3;
+}
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}

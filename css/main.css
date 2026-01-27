@@ -1,0 +1,512 @@
+@import 'variables.css';
+
+/* Reset & Base */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+}
+
+/* Background Ambient Blobs (The "AI" Look) */
+body::before,
+body::after {
+    content: '';
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+    opacity: 0.7;
+    /* Increased opacity for soft light colors */
+    animation: float 20s infinite alternate;
+}
+
+body::before {
+    width: 65vw;
+    height: 65vw;
+    background: var(--blob-color-1);
+    top: -20%;
+    left: -20%;
+}
+
+body::after {
+    width: 55vw;
+    height: 55vw;
+    background: var(--blob-color-2);
+    bottom: -10%;
+    right: -10%;
+    animation-delay: -10s;
+}
+
+/* Base Headers */
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--text-primary);
+}
+
+h1 {
+    font-size: clamp(3.5rem, 8vw, 6rem);
+    /* MASSIVE Hero Text */
+    letter-spacing: -0.03em;
+}
+
+h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -0.02em;
+    margin-bottom: var(--spacing-md);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* Utilities */
+.container {
+    /* width: 96%; */
+    max-width: 1400px;
+    /* Wider for that "Screen-filling" look */
+    margin: 0 auto;
+    padding: 0;
+}
+
+.section {
+    padding: var(--spacing-lg) var(--spacing-md);
+}
+
+.glass-panel {
+    background: var(--surface-color);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: var(--shadow-md);
+}
+
+/* Hero Section Specifics */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 60px;
+    /* Offset for nav */
+}
+
+/* Updated Hero Layout for 2 Columns */
+.hero-container-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    /* Ensure z-index works */
+    z-index: 10;
+    /* Text strictly above skater and path */
+}
+
+.hero-content {
+    max-width: 100%;
+    /* Let grid handle width */
+}
+
+@keyframes float-skater {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.flight-arena {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 50;
+}
+
+/* Avatar Styles */
+.hero-avatar {
+    position: absolute;
+    /* Handled by JS relative to body */
+    top: 0;
+    left: 0;
+    z-index: 50;
+    /* High enough to fly over sections */
+    pointer-events: none;
+    will-change: transform;
+    transform-origin: bottom center;
+    transition: none;
+    /* JS Frame-by-frame position */
+}
+
+.avatar-wrapper {
+    width: 250px;
+    /* Smaller, nimble skater */
+    height: auto;
+    position: relative;
+    /* border-radius: 40px; Remove box look, just the person */
+    /* background: rgba(255, 255, 255, 0.3); */
+    /* border: 1px solid rgba(255, 255, 255, 0.8); */
+    /* backdrop-filter: blur(5px); */
+    overflow: visible;
+    transform-style: preserve-3d;
+    /* box-shadow: var(--shadow-lg); */
+    transition: transform 0.1s ease-out;
+    /* Snappy turns for invisible effect */
+    /* Smooth follow */
+}
+
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Optional: Scale up slightly to allow movement without edges showing if we panned */
+    transform: none;
+}
+
+/* Glow/Ring effect behind avatar */
+.avatar-glow {
+    position: absolute;
+    inset: -20px;
+    background: radial-gradient(circle at 50% 50%, var(--blob-color-2), transparent 70%);
+    z-index: -1;
+    filter: blur(40px);
+    opacity: 0.6;
+    animation: pulseGlow 4s infinite alternate;
+}
+
+@keyframes pulseGlow {
+    0% {
+        transform: scale(0.9);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+.hero-desc {
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    color: var(--text-secondary);
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    max-width: 650px;
+    font-weight: 300;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn {
+    padding: 1rem 2.5rem;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    /* Removed pill shape comment to avoid target mismatch if I change it */
+}
+
+
+.btn-primary {
+    background: linear-gradient(135deg, #d4a574 0%, #eaa555 100%);
+    color: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(212, 165, 116, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(221, 153, 80, 0.668);
+    background: linear-gradient(135deg, #bf975e 0%, #eaa555 100%);
+    color: #000;
+}
+
+
+.btn-outline {
+    border: 2px solid #d4a574;
+    color: #e5c08d;
+    background: transparent;
+    margin-left: 1rem;
+    box-shadow: 0 0 10px rgba(212, 165, 116, 0.1);
+}
+
+.btn-outline:hover {
+    background: rgba(212, 165, 116, 0.15);
+    border-color: #eaa355;
+    /* color: #fff; */
+    box-shadow: 0 0 20px rgba(215, 154, 90, 0.4);
+    transform: translateY(-3px);
+}
+
+/* Cards (Projects & About) - The "Glassmorphism" Look */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    /* Text wider than stats */
+    gap: 4rem;
+    align-items: center;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(12px);
+    padding: 2.5rem;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: #fff;
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    /* Wider cards */
+    gap: 2.5rem;
+}
+
+.project-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-shadow: var(--shadow-sm);
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: var(--shadow-lg);
+}
+
+.project-image {
+    height: 240px;
+    background: #0f172a;
+    position: relative;
+}
+
+/* Gradient Overlay on Images for "Unified" look */
+.project-image::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, rgba(56, 189, 248, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+    opacity: 0.6;
+}
+
+.project-content {
+    padding: 2.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.timeline {
+    border-left: 2px solid rgba(0, 0, 0, 0.06);
+    margin-top: 3rem;
+}
+
+.text-gradient {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 300% auto;
+    animation: mystic-shimmer 12s linear infinite;
+}
+
+@keyframes mystic-shimmer {
+    0% {
+        background-position: 0% 50%;
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0));
+    }
+
+    33% {
+        filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.35));
+    }
+
+    66% {
+        filter: drop-shadow(0 0 20px rgba(219, 134, 166, 0.35));
+    }
+
+    100% {
+        background-position: 300% 50%;
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0));
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(30px, -30px) scale(1.1);
+    }
+}
+
+/* Mobile Tweaks */
+@media (max-width: 900px) {
+    .hero-container-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .hero-content {
+        margin: 0 auto;
+    }
+
+    .hero-avatar {
+        order: -1;
+        /* Avatar on top for mobile? Or bottom? Let's try top. */
+        margin-bottom: 2rem;
+    }
+
+    .avatar-wrapper {
+        width: 300px;
+        height: 300px;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    body::before {
+        opacity: 0.4;
+    }
+}
+
+/* Helper animation classes */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Mouse Spotlight (Added for extra polish) */
+.spotlight-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(99, 102, 241, 0.04), transparent 40%);
+}
+
+/* Skating Animation Logic */
+.hero-avatar .skating-motion {
+    /* Using a detached animation for the image inside the wrapper */
+    /* animation: skate-motion 1.5s ease-in-out infinite alternate; */
+    transform-origin: bottom center;
+}
+
+/* We want the container to slide left-right, but the hero section layout is static.
+   Maybe just tilt the avatar in place as if skating on a treadmill? 
+   Or subtle horizontal movement. */
+@keyframes skate-motion {
+    0% {
+        transform: translateY(0) rotate(-6deg) translateX(-10px);
+    }
+
+    100% {
+        transform: translateY(-5px) rotate(6deg) translateX(10px);
+    }
+}
+
+/* Visual Path SVG */
+.skater-path-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    /* Behind avatar (1) and text (2) */
+    pointer-events: none;
+    overflow: visible;
+}
+
+#infinity-path {
+    filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.5));
+    animation: pulsePath 3s ease-in-out infinite alternate;
+}
+
+@keyframes pulsePath {
+    0% {
+        stroke-opacity: 0.3;
+        stroke-width: 3;
+    }
+
+    100% {
+        stroke-opacity: 0.8;
+        stroke-width: 5;
+    }
+}
