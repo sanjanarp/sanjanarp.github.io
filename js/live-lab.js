@@ -230,6 +230,21 @@ Provide: category, priority, and budget impact."""</span>
         }
     };
 
+    const upcomingProjects = {
+        'neural-weaver': {
+            name: 'Neural Weaver',
+            badges: ['Concept', 'Graph Neural/Nets', 'Bio-inspired'],
+            description: 'A theoretical framework for self-organizing neural architectures mimicking mycelium growth patterns.',
+            status: 'Research Phase'
+        },
+        'swarm-opt': {
+            name: 'Swarm-Opt',
+            badges: ['Concept', 'Reinforcement Learning', 'Robotics'],
+            description: 'Multi-agent RL environment for optimizing drone swarm logistics in cluttered urban canyons.',
+            status: 'Prototyping'
+        }
+    };
+
     // Initialize Live Lab
     function initializeLiveLab() {
         if (document.getElementById('live-lab-overlay')) return;
@@ -248,8 +263,19 @@ Provide: category, priority, and budget impact."""</span>
             `<div class="project-nav-item" data-project="${key}">${projectsData[key].name}</div>`
         ).join('');
 
+        const upcomingNavItems = Object.keys(upcomingProjects).map(key =>
+            `<div class="project-nav-item upcoming" data-project="${key}">
+                ${upcomingProjects[key].name}
+                <span class="upcoming-badge">NEW</span>
+            </div>`
+        ).join('');
+
         const projectSections = Object.keys(projectsData).map(key =>
             generateProjectSection(key, projectsData[key])
+        ).join('');
+
+        const upcomingSections = Object.keys(upcomingProjects).map(key =>
+            generateUpcomingSection(key, upcomingProjects[key])
         ).join('');
 
         return `
@@ -265,16 +291,22 @@ Provide: category, priority, and budget impact."""</span>
 
                     <div class="neural-lab-content">
                         <!-- Left Sidebar: Project Navigator -->
+                        <!-- Left Sidebar: Project Navigator -->
                         <div class="neural-sidebar">
                             <div class="sidebar-section">
                                 <h3>Projects</h3>
                                 ${projectNavItems}
+                            </div>
+                            <div class="sidebar-section">
+                                <h3>Upcoming</h3>
+                                ${upcomingNavItems}
                             </div>
                         </div>
 
                         <!-- Main Panel: Project Details -->
                         <div class="neural-main-panel">
                             ${projectSections}
+                            ${upcomingSections}
                         </div>
 
                         <!-- Right Panel: Visualizations & Logs -->
@@ -354,6 +386,35 @@ Provide: category, priority, and budget impact."""</span>
         `;
     }
 
+    function generateUpcomingSection(key, project) {
+        return `
+            <div class="project-detail-section upcoming-mode" data-project="${key}">
+                <div class="detail-header">
+                    <h2 class="detail-title">
+                        ${project.name}
+                        <span class="status-pill">${project.status}</span>
+                    </h2>
+                    <div class="detail-badges">
+                        ${project.badges.map(b => `<span class="tech-badge">${b}</span>`).join('')}
+                    </div>
+                </div>
+
+                <div class="detail-block">
+                    <h3 class="block-title">Concept Overview</h3>
+                    <p class="detail-text">${project.description}</p>
+                </div>
+
+                <div class="detail-block placeholder-viz">
+                    <div class="placeholder-content">
+                        <i class="fa-solid fa-flask-vial"></i>
+                        <p>Research & Prototyping in Progress</p>
+                        <span>Detailed metrics and visualizations will be available upon release.</span>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
     function loadProject(projectKey) {
         // Update active states
         document.querySelectorAll('.project-nav-item').forEach(item => {
@@ -364,11 +425,27 @@ Provide: category, priority, and budget impact."""</span>
             section.classList.toggle('active', section.dataset.project === projectKey);
         });
 
-        // Load visualizations
-        loadVisualizations(projectKey);
+        // Load visualizations (check if it's a main project or upcoming)
+        if (projectsData[projectKey]) {
+            loadVisualizations(projectKey);
+        } else if (upcomingProjects[projectKey]) {
+            // For upcoming projects, we might clear the Viz panel or show a generic "Future" graphic
+            document.getElementById('viz-panel').innerHTML = `
+                <div class="viz-section">
+                    <h3 class="viz-title">System Status</h3>
+                    <div class="playground-container" style="display: flex; align-items: center; justify-content: center; height: 300px; color: rgba(255,255,255,0.3); flex-direction: column; gap: 15px; text-align: center;">
+                        <i class="fa-solid fa-microchip" style="font-size: 48px;"></i>
+                        <p>Awaiting Neural Link...</p>
+                    </div>
+                </div>
+            `;
+        }
     }
 
     function loadVisualizations(projectKey) {
+        // Safety check
+        if (!projectsData[projectKey]) return;
+
         const project = projectsData[projectKey];
         const vizPanel = document.getElementById('viz-panel');
 
