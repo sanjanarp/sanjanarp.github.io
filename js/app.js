@@ -104,6 +104,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 4. Smooth Scroll & Navbar Scroll Effect
     const navHeader = document.querySelector('.nav-header');
+    const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+
+    if (mobileNavToggle) {
+        mobileNavToggle.addEventListener('click', () => {
+            navHeader.classList.toggle('nav-active');
+        });
+    }
 
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -116,6 +123,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
+            // Close mobile menu on click
+            navHeader.classList.remove('nav-active');
+
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
                 target.scrollIntoView({ behavior: 'smooth' });

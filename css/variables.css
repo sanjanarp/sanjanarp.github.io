@@ -15,14 +15,15 @@
     /* Aged parchment */
     --text-accent: #d4a574;
     /* Warm gold */
+    --gold: #eaa355;
 
-    /* Magical Blobs - Hogwarts House Colors */
-    --blob-color-1: rgba(116, 0, 1, 0.25);
-    /* Gryffindor burgundy */
-    --blob-color-2: rgba(26, 71, 42, 0.2);
-    /* Slytherin green */
-    --blob-color-3: rgba(212, 165, 116, 0.15);
-    /* Warm gold */
+    /* Magical Blobs - Mystical AI Colors */
+    --blob-color-1: rgba(124, 58, 237, 0.3);
+    /* Deep Violet */
+    --blob-color-2: rgba(59, 130, 246, 0.3);
+    /* Royal Blue */
+    --blob-color-3: rgba(147, 197, 253, 0.2);
+    /* Light Blue */
 
     /* Text Gradient - White to Gold to Pink Shimmer */
     --gradient-text: linear-gradient(135deg, #ffffff 0%, #ff9600 33%, #db86a6 66%, #ffffff 100%);

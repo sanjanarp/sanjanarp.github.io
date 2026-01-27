@@ -39,8 +39,9 @@
     left: 50%;
     transform: translate(-50%, -70%);
     /* Moved up significantly */
-    width: 800px;
-    /* Much wider for longer path */
+    width: 90%;
+    max-width: 800px;
+    /* Responsive width */
     height: 250px;
     /* Reduced height for sleeker look */
     pointer-events: none;
@@ -320,4 +321,20 @@
 
 .doors-open .door-right {
     transform: perspective(1200px) rotateY(110deg) scale(1.05);
+}
+
+/* Mobile Adjustments for Entrance */
+@media (max-width: 600px) {
+    .spell-hint {
+        font-size: 1rem;
+        bottom: 50px;
+    }
+
+    .entrance-instruction {
+        font-size: 1.1rem;
+        width: 100%;
+        text-align: center;
+        padding: 0 1rem;
+        bottom: 15%;
+    }
 }

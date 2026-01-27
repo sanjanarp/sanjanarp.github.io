@@ -29,7 +29,7 @@
     <style>
         /* Embedded critical styles for Hero to avoid FOUC */
         .hero {
-            min-height: 90vh;
+            min-height: 100dvh;
             display: flex;
             align-items: center;
             position: relative;
@@ -49,6 +49,12 @@
             z-index: 0;
             opacity: 0.6;
             filter: blur(60px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
         }
 
         .nav-header {
@@ -177,11 +183,16 @@
     </div>
 
     <nav class="nav-header">
-        <div class="container nav-content">
+        <div class="nav-content">
             <a href="#about" class="logo">
                 <span class="logo-name">Sanjana Ravi Prakash</span>
                 <span class="logo-tagline">AI Engineer & Researcher</span>
             </a>
+
+            <button class="mobile-nav-toggle" aria-label="Toggle Navigation">
+                <span class="hamburger"></span>
+            </button>
+
             <div class="nav-links">
                 <a href="#about">About</a>
                 <a href="#projects">Projects</a>
@@ -600,8 +611,9 @@
 
         <!-- Footer -->
         <!-- Owl Post Contact Section -->
-        <section id="contact" class="owlery-section">
+        <section id="contact" class="owlery-section container">
             <h2 class="fade-in-up">Contact</h2>
+
             <div class="owlery-container fade-in-up">
 
                 <!-- The Parchment Scroll -->
