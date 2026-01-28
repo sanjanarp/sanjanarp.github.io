@@ -55,11 +55,18 @@
 }
 
 .spell-path-bg {
-    stroke: rgba(255, 255, 255, 0.15);
+    stroke: rgba(255, 255, 255, 0.4);
+    /* Increased visibility from 0.15 */
     stroke-width: 4;
-    stroke-dasharray: 10, 10;
+    stroke-dasharray: 10, 15;
     fill: none;
-    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
+    filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.5));
+}
+
+.guide-orb {
+    fill: #fff;
+    filter: drop-shadow(0 0 8px #fff) drop-shadow(0 0 15px #ffd700);
+    opacity: 0.9;
 }
 
 .spell-path-progress {

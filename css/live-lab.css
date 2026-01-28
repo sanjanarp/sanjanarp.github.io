@@ -636,6 +636,62 @@
     }
 }
 
+/* Tablet & Mobile Table Fix (Card View) */
+@media (max-width: 1200px) {
+
+    /* Transform Table to Cards for Tablet/Mobile */
+    .metrics-table,
+    .metrics-table tbody,
+    .metrics-table tr,
+    .metrics-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .metrics-table thead {
+        display: none;
+        /* Hide headers */
+    }
+
+    .metrics-table tbody tr {
+        margin-bottom: 20px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(212, 165, 116, 0.1);
+        border-radius: 12px;
+        padding: 15px;
+    }
+
+    .metrics-table td {
+        padding: 5px 0;
+        text-align: left;
+        border: none;
+    }
+
+    .metrics-table td:first-child {
+        width: 100%;
+        color: #eaa355;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 4px;
+    }
+
+    .metrics-table td:nth-child(2) {
+        width: 100%;
+        font-size: 15px;
+        font-weight: 600;
+        color: #fff;
+        margin-bottom: 8px;
+    }
+
+    .metrics-table td:last-child {
+        width: 100%;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.6);
+        font-style: italic;
+    }
+}
+
 @media (max-width: 768px) {
     .neural-lab-modal {
         width: 100%;
@@ -716,10 +772,12 @@
         /* Hide visualization panel on mobile */
     }
 
-    .metrics-table td {
-        padding: 10px;
-        font-size: 13px;
+    .neural-viz-panel {
+        display: none;
+        /* Hide visualization panel on mobile */
     }
+
+
 
     .detail-title {
         font-size: 24px;

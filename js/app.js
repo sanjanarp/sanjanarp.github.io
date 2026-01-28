@@ -159,7 +159,7 @@ if (heroSection && skater) {
         const h = heroSection.clientHeight || 800;
 
         // 1. Horizontal Movement
-        state.x += state.facing === 1 ? 3.0 : -3.0;
+        state.x += state.facing === 1 ? 1.5 : -1.5; // Slowed down from 3.0
 
         // 2. Vertical Movement (Continuous Bounce)
         state.noiseTime += 0.01;

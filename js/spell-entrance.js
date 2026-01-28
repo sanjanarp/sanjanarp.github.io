@@ -216,4 +216,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('mouseleave', () => {
         wandCursor.style.display = 'none';
     });
+
+    // Prevent context menu (right-click) to avoid interrupting the spell
+    document.addEventListener('contextmenu', (e) => {
+        // Only block if entrance is still visible
+        if (!revealed) {
+            e.preventDefault();
+            return false;
+        }
+    });
 });

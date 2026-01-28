@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Engineer & Researcher | Portfolio</title>
+    <title>Sanjana Ravi Prakash</title>
     <meta name="description"
         content="Portfolio of an AI Software Engineer specializing in Computer Vision and Machine Learning.">
 
@@ -167,11 +167,19 @@
                 <!-- Helper dots -->
                 <circle cx="50" cy="200" r="4" class="spell-point start" />
                 <circle cx="550" cy="100" r="4" class="spell-point end" />
+
+                <!-- Animated Guide Orb to show user what to do -->
+                <circle r="6" fill="#fff" class="guide-orb">
+                    <animateMotion dur="2.5s" repeatCount="indefinite" rotate="auto" keyPoints="0;1" keyTimes="0;1"
+                        calcMode="linear">
+                        <mpath href="#guide-path" />
+                    </animateMotion>
+                </circle>
             </svg>
             <div class="spell-hint">Swish and Flick!</div>
         </div>
 
-        <div class="entrance-instruction">Trace the spell to enter...</div>
+        <div class="entrance-instruction">Move your wand along the path to enter...</div>
     </div>
 
     <script src="js/spell-entrance.js"></script>
@@ -186,7 +194,7 @@
         <div class="nav-content">
             <a href="#about" class="logo">
                 <span class="logo-name">Sanjana Ravi Prakash</span>
-                <span class="logo-tagline">AI Engineer & Researcher</span>
+                <span class="logo-tagline">AI Engineer</span>
             </a>
 
             <button class="mobile-nav-toggle" aria-label="Toggle Navigation">
