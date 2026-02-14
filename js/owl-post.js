@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Success Animation
                     submitBtn.style.transform = 'scale(1.05) rotate(5deg)';
                     btnText.textContent = "Sent!";
-                    submitBtn.style.background = "radial-gradient(circle at 30% 30%, #4a2c2a, #2c1810)"; // Darkened wax
+                    // submitBtn.style.background = "radial-gradient(circle at 30% 30%, #4a2c2a, #2c1810)"; // Darkened wax (Removed)
 
                     // 2. Owl Flight Animation
                     if (owlPerch) {
