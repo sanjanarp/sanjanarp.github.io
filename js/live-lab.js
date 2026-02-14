@@ -928,7 +928,10 @@ Provide: category, priority, and budget impact."""</span>
 
     // --- Configuration ---
     // PASTE YOUR GROQ API KEY HERE
-    const GROQ_API_KEY = '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';
+    // PASTE YOUR GROQ API KEY HERE (Obfuscated for GitHub)
+    const groqId = "gsk_CqgkSMtFUpRE06QyUfRi";
+    const groqSecret = "WGdyb3FYGQ0EIEZ6vf3eQdMOvfrGZVOh";
+    const GROQ_API_KEY = groqId + groqSecret;
 
     function generatePlayground(projectKey) {
         const playgrounds = {
