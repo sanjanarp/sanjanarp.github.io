@@ -8,21 +8,78 @@ document.addEventListener('DOMContentLoaded', () => {
         owlForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            // 1. Stamp Effect
+            // 1. Stamp Effect (Visual Feedback immediately)
             submitBtn.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                submitBtn.style.transform = 'scale(1.05) rotate(5deg)';
-                btnText.textContent = "Sent!";
-                submitBtn.style.background = "radial-gradient(circle at 30% 30%, #4a2c2a, #2c1810)"; // Darkened wax
-            }, 150);
 
-            // 2. Owl Flight Animation
-            if (owlPerch) {
-                // Add class to trigger CSS flight
-                owlPerch.classList.add('flying-away');
+            // Discord Webhook Integration
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
 
-                // Play hoot sound? (Optional, skipping for now)
-            }
+            // STATUS: Configuring request...
+            btnText.textContent = "Sending...";
+
+            // Construct Discord Embed Payload
+            const webhookUrl = "https://discord.com/api/webhooks/1472339866921472133/MbAq7nC2N-onKxtweJdALbIRque6QkxAeOcYba4Tk6uphwa7FtEEfsh8S19Rl0sXZTmg"; // TODO: Replace with your Discord Webhook URL
+
+            const payload = {
+                content: "🦉 **New Portfolio Inquiry!**",
+                embeds: [{
+                    title: "Message from " + name,
+                    color: 15300693, // Gold color #d46c1e approx
+                    fields: [
+                        {
+                            name: "📧 Email",
+                            value: email,
+                            inline: true
+                        },
+                        {
+                            name: "👤 Name",
+                            value: name,
+                            inline: true
+                        },
+                        {
+                            name: "📝 Message",
+                            value: message
+                        }
+                    ],
+                    footer: {
+                        text: "Sent from Portfolio | " + new Date().toLocaleString()
+                    }
+                }]
+            };
+
+            fetch(webhookUrl, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            }).then(response => {
+                if (response.ok || response.status === 204) {
+                    // Success Animation
+                    submitBtn.style.transform = 'scale(1.05) rotate(5deg)';
+                    btnText.textContent = "Sent!";
+                    submitBtn.style.background = "radial-gradient(circle at 30% 30%, #4a2c2a, #2c1810)"; // Darkened wax
+
+                    // 2. Owl Flight Animation
+                    if (owlPerch) {
+                        owlPerch.classList.add('flying-away');
+                    }
+                } else {
+                    // Error state
+                    console.error("Discord Webhook Error:", response.status, response.statusText);
+                    btnText.textContent = "Error!";
+                    alert("Oops! There was a problem sending your message. Please check the console.");
+                    submitBtn.style.transform = 'scale(1)';
+                }
+            }).catch(error => {
+                // Network error
+                console.error("Network Error:", error);
+                btnText.textContent = "Error!";
+                alert("Oops! There was a network error. Please try again.");
+                submitBtn.style.transform = 'scale(1)';
+            });
 
             // 3. Reset form after delay
             setTimeout(() => {

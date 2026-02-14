@@ -231,18 +231,7 @@ Provide: category, priority, and budget impact."""</span>
     };
 
     const upcomingProjects = {
-        'neural-weaver': {
-            name: 'Neural Weaver',
-            badges: ['Concept', 'Graph Neural/Nets', 'Bio-inspired'],
-            description: 'A theoretical framework for self-organizing neural architectures mimicking mycelium growth patterns.',
-            status: 'Research Phase'
-        },
-        'swarm-opt': {
-            name: 'Swarm-Opt',
-            badges: ['Concept', 'Reinforcement Learning', 'Robotics'],
-            description: 'Multi-agent RL environment for optimizing drone swarm logistics in cluttered urban canyons.',
-            status: 'Prototyping'
-        }
+        // 'sentinel-mlops': { ... } Removed as per user request
     };
 
     // Initialize Live Lab
@@ -263,12 +252,18 @@ Provide: category, priority, and budget impact."""</span>
             `<div class="project-nav-item" data-project="${key}">${projectsData[key].name}</div>`
         ).join('');
 
-        const upcomingNavItems = Object.keys(upcomingProjects).map(key =>
-            `<div class="project-nav-item upcoming" data-project="${key}">
-                ${upcomingProjects[key].name}
-                <span class="upcoming-badge">NEW</span>
-            </div>`
-        ).join('');
+        const upcomingKeys = Object.keys(upcomingProjects);
+        const upcomingNavItems = upcomingKeys.length > 0
+            ? upcomingKeys.map(key =>
+                `<div class="project-nav-item upcoming" data-project="${key}">
+                    ${upcomingProjects[key].name}
+                    <span class="upcoming-badge">NEW</span>
+                </div>`
+            ).join('')
+            : `<div class="upcoming-empty-state" style="padding: 25px 10px; text-align: center; color: rgba(212, 165, 116, 0.6); border: 1px dashed rgba(212, 165, 116, 0.3); border-radius: 12px; margin-top: 5px;">
+                <i class="fa-solid fa-flask" style="font-size: 20px; margin-bottom: 8px; opacity: 0.8; display: block;"></i>
+                <span style="font-size: 13px; font-style: italic; display: block;">Brewing in Cauldron...</span>
+               </div>`;
 
         const projectSections = Object.keys(projectsData).map(key =>
             generateProjectSection(key, projectsData[key])
