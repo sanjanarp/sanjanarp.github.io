@@ -55,62 +55,58 @@ document.addEventListener('DOMContentLoaded', () => {
             github: '' // Add your GitHub link here
         },
         'finance-ai': {
-            name: 'AI Finance Manager',
-            badges: ['LangChain', 'LLM', 'RAG', 'Groq'],
-            description: 'Conversational financial assistant leveraging Groq Llama 3.1 for intelligent budget planning and expense analysis.',
+            name: 'AI-Powered Personal Finance Manager',
+            badges: ['OpenAI', 'Plaid', 'Streamlit', 'Docker', 'AWS'],
+            description: 'Python-based web app with Plaid integration and LLM-driven financial advice using GPT-4 / GPT-3.5-Turbo (OpenAI API), enabling automated expense tracking, predictive budgeting, bill reminders, receipt scanning, and recurring transaction detection. Containerized with Docker and deployed on AWS EC2 with ECR-based image management and ALB for load-balanced public access.',
             code: {
-                file: 'agents/finance_agent.py',
+                file: 'app/finance_manager.py',
                 language: 'Python',
-                snippet: `<span class="code-keyword">from</span> langchain <span class="code-keyword">import</span> PromptTemplate, LLMChain
-<span class="code-keyword">from</span> groq <span class="code-keyword">import</span> Groq
+                snippet: `<span class="code-keyword">import</span> streamlit <span class="code-keyword">as</span> st
+<span class="code-keyword">from</span> openai <span class="code-keyword">import</span> OpenAI
+<span class="code-keyword">from</span> plaid.api <span class="code-keyword">import</span> plaid_api
 
-<span class="code-keyword">class</span> <span class="code-function">FinanceAgent</span>:
+<span class="code-keyword">class</span> <span class="code-function">FinanceManager</span>:
     <span class="code-keyword">def</span> <span class="code-function">__init__</span>(self):
-        self.client = <span class="code-function">Groq</span>(api_key=os.getenv(<span class="code-string">"GROQ_API_KEY"</span>))
-        self.model = <span class="code-string">"llama-3.1-70b-versatile"</span>
+        self.openai = <span class="code-function">OpenAI</span>(api_key=os.getenv(<span class="code-string">"OPENAI_API_KEY"</span>))
+        self.plaid = <span class="code-function">plaid_api.PlaidApi</span>(self.config)
         
-        self.prompt = <span class="code-function">PromptTemplate</span>(
-            template=<span class="code-string">"""You are an expert financial advisor.
-Analyze the following transaction and provide insights:
-
-Transaction: {transaction}
-Context: {user_context}
-
-Provide: category, priority, and budget impact."""</span>
-        )
-        
-    <span class="code-keyword">def</span> <span class="code-function">analyze_expense</span>(self, transaction, context):
-        response = self.client.chat.completions.<span class="code-function">create</span>(
-            model=self.model,
+    <span class="code-keyword">def</span> <span class="code-function">get_financial_advice</span>(self, transactions):
+        response = self.openai.chat.completions.<span class="code-function">create</span>(
+            model=<span class="code-string">"gpt-4"</span>,
             messages=[{
+                <span class="code-string">"role"</span>: <span class="code-string">"system"</span>,
+                <span class="code-string">"content"</span>: <span class="code-string">"You are an expert financial advisor."</span>
+            }, {
                 <span class="code-string">"role"</span>: <span class="code-string">"user"</span>,
-                <span class="code-string">"content"</span>: self.prompt.<span class="code-function">format</span>(
-                    transaction=transaction,
-                    user_context=context
-                )
+                <span class="code-string">"content"</span>: <span class="code-function">f</span><span class="code-string">"Analyze: {transactions}"</span>
             }],
-            temperature=<span class="code-number">0.3</span>,
-            max_tokens=<span class="code-number">500</span>
+            temperature=<span class="code-number">0.3</span>
         )
-        <span class="code-keyword">return</span> response.choices[<span class="code-number">0</span>].message.content`
+        <span class="code-keyword">return</span> response.choices[<span class="code-number">0</span>].message.content
+
+    <span class="code-keyword">def</span> <span class="code-function">detect_recurring</span>(self, txns):
+        <span class="code-comment"># Detect recurring transactions</span>
+        <span class="code-keyword">return</span> self._pattern_match(txns)`
             },
             metrics: [
-                ['Model', 'Llama 3.1 70B', 'Groq hosted inference'],
-                ['Context Window', '8K tokens', 'Extended conversation memory'],
-                ['Latency', '~120 tokens/sec', 'Groq acceleration'],
-                ['Accuracy', '95% (categorization)', '500+ test transactions'],
-                ['Prompt Strategy', 'Chain-of-Thought + Few-Shot', 'Optimized reasoning'],
-                ['Cost', '$0.0008/query', 'Production-ready pricing']
+                ['LLM', 'GPT-4 / GPT-3.5-Turbo', 'OpenAI API'],
+                ['Banking API', 'Plaid', 'Automated expense tracking'],
+                ['Frontend', 'Streamlit', 'Interactive financial dashboard'],
+                ['Features', 'Bill Reminders, Receipt Scanning', 'Recurring transaction detection'],
+                ['Containerization', 'Docker', 'ECR-based image management'],
+                ['Deployment', 'AWS EC2 + ALB', 'Load-balanced public access']
             ],
-            architecture: 'LangChain Orchestration → Groq LLM → Prompt Engineering → Memory Buffer',
+            architecture: 'Streamlit UI → Plaid API → OpenAI GPT-4 → Predictive Budgeting → Docker → AWS EC2 / ECR / ALB',
             terminal: [
-                { type: 'info', text: '[INIT] Initializing Finance Agent...' },
-                { type: 'success', text: '[✓] Connected to Groq API' },
-                { type: 'info', text: '[QUERY] Analyzing expense: "Grocery - $127.45"' },
-                { type: 'success', text: '[✓] Category: Essential | Priority: High' },
-                { type: 'info', text: '[LLM] Tokens: 342 | Latency: 2.8s' },
-                { type: 'success', text: '[✓] Budget impact: Within limit (-8%)' },
-                { type: 'info', text: '[CACHE] Storing conversation context...' }
+                { type: 'info', text: '[INIT] Starting AI Personal Finance Manager...' },
+                { type: 'success', text: '[✓] Connected to Plaid API' },
+                { type: 'success', text: '[✓] OpenAI GPT-4 model loaded' },
+                { type: 'info', text: '[PLAID] Fetching transactions...' },
+                { type: 'success', text: '[✓] 142 transactions synced' },
+                { type: 'info', text: '[LLM] Generating personalized financial insights...' },
+                { type: 'success', text: '[✓] Predictive budget created | 3 bill reminders set' },
+                { type: 'info', text: '[DOCKER] Building image → Pushing to ECR...' },
+                { type: 'success', text: '[✓] Deployed on AWS EC2 via ALB' }
             ],
             github: '' // Add your GitHub link here
         },
@@ -949,7 +945,7 @@ Provide: category, priority, and budget impact."""</span>
             'finance-ai': `
                 <div class="chat-playground">
                     <div class="chat-messages" id="chat-messages">
-                        <div class="chat-message ai">I'm your AI Finance Manager. Ask me for advice on budgeting, investing, or saving!</div>
+                        <div class="chat-message ai">I'm your AI-Powered Personal Finance Manager. Ask me for advice on budgeting, investing, or saving!</div>
                     </div>
                     <div class="chat-input-wrapper">
                         <input type="text" class="chat-input" id="chat-input" placeholder="Ask a financial question...">
