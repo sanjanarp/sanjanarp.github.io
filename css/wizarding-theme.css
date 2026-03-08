@@ -1793,11 +1793,12 @@ a.cert-card:hover {
     display: flex;
     flex-direction: column;
     /* gap: 2rem; */
+    margin-top: 2rem;
 }
 
 .form-group {
     position: relative;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .quill-input {
@@ -1823,7 +1824,7 @@ a.cert-card:hover {
 /* Floating Label Animation */
 .form-group label {
     position: absolute;
-    top: 0.5rem;
+    top: 0.6rem;
     left: 0;
     font-size: 1rem;
     color: #8b5e3c;
@@ -1834,10 +1835,24 @@ a.cert-card:hover {
 
 .quill-input:focus~label,
 .quill-input:not(:placeholder-shown)~label {
-    top: -1.2rem;
+    top: -2rem;
     font-size: 0.8rem;
     color: #4a2c2a;
     font-weight: bold;
+}
+
+/* Textarea needs slightly larger lift to clear space when focused */
+textarea.quill-input:focus~label,
+textarea.quill-input:not(:placeholder-shown)~label {
+    top: -2.6rem;
+    font-size: 0.8rem;
+    color: #4a2c2a;
+    font-weight: bold;
+}
+
+/* Slightly more padding for textarea to avoid overlap */
+textarea.quill-input {
+    padding: 0.7rem 0;
 }
 
 /* Wax Seal Button */
