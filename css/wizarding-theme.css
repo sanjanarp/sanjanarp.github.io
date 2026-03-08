@@ -460,23 +460,22 @@
 /* Enchanted Runes (Mastered Spells) - Primary UI */
 .runes-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem 1.5rem;
-    padding: 1rem 0;
-    max-width: 1000px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    padding: 0.5rem 0;
+    max-width: 600px;
     margin: 0 auto;
 }
 
-.rune-card:nth-child(1) {
-    grid-column: 1 / 3;
-}
-
-.rune-card:nth-child(2) {
-    grid-column: 3 / 5;
-}
-
+.rune-card:nth-child(1),
+.rune-card:nth-child(2),
 .rune-card:nth-child(3) {
-    grid-column: 2 / 4;
+    grid-column: auto;
+}
+
+.runes-grid {
+    align-items: start;
+    justify-items: center;
 }
 
 .rune-card {
@@ -490,8 +489,13 @@
     /* Ensure expansion doesn't clip */
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     background: transparent;
-    border-radius: 12px;
-    padding: 1rem;
+    border-radius: 8px;
+    padding: 0.4rem;
+    align-self: start;
+    width: auto;
+    max-width: 260px;
+    min-height: 140px;
+    justify-content: flex-start;
 }
 
 /* Expansion & Glassmorphism on Hover */
@@ -507,23 +511,23 @@
 }
 
 .rune-tablet {
-    width: 100px;
-    height: 120px;
+    width: 64px;
+    height: 78px;
     background: #1a1625;
     /* Dark basalt stone */
     background-image:
         radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
         url("https://www.transparenttextures.com/patterns/dark-matter.png");
     border: 2px solid rgba(212, 165, 116, 0.2);
-    border-radius: 8px;
+    border-radius: 6px;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.6rem;
     box-shadow:
-        10px 10px 20px rgba(0, 0, 0, 0.5),
-        inset 0 0 15px rgba(0, 0, 0, 0.8);
+        6px 6px 12px rgba(0, 0, 0, 0.45),
+        inset 0 0 10px rgba(0, 0, 0, 0.7);
     transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     transform-style: preserve-3d;
 }
@@ -539,8 +543,8 @@
 }
 
 .rune-symbol {
-    width: 60px;
-    height: 60px;
+    width: 48px;
+    height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -583,10 +587,10 @@
 
 /* Hover Interactions (The Lumos Effect) */
 .rune-card:hover .rune-tablet {
-    transform: rotateY(-15deg) rotateX(10deg) translateY(-10px) scale(0.9);
-    /* Sharper Tablet rotation, slightly smaller to make room */
+    transform: rotateY(-15deg) rotateX(10deg) translateY(-8px) scale(0.8);
+    /* Sharper Tablet rotation, further reduced scale to shrink */
     border-color: rgba(212, 165, 116, 0.6);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(212, 165, 116, 0.2);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.65), 0 0 14px rgba(212, 165, 116, 0.18);
 }
 
 .rune-card:hover .rune-symbol svg {
@@ -680,7 +684,7 @@
 
 /* Hide Rune Tablet (Background) on Hover */
 .rune-card:hover .rune-tablet {
-    transform: rotateY(-15deg) rotateX(10deg) translateY(-10px) scale(0.5);
+    transform: rotateY(-15deg) rotateX(10deg) translateY(-10px) scale(0.35);
     opacity: 0;
     visibility: hidden;
 }
@@ -688,7 +692,7 @@
 /* Hide Rune Symbol on Hover */
 .rune-card:hover .rune-symbol {
     opacity: 0;
-    transform: scale(0.8);
+    transform: scale(0.6);
 }
 
 /* Icons Container - Positioned over the tablet where symbol was */
@@ -697,38 +701,36 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 20px;
-    /* Reduced gap from 25px */
-    row-gap: 15px;
-    /* Reduced row-gap */
+    gap: 8px;
+    row-gap: 6px;
     opacity: 0;
     /* Position absolutely relative to the CARD, but centered over the tablet */
     position: absolute;
     top: 55%;
     /* Moved down slightly to clear top title */
     left: 50%;
-    transform: translate(-50%, -50%) scale(0.5) rotateY(-10deg);
+    transform: translate(-50%, -50%) scale(0.3) rotateY(-10deg);
     transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
     z-index: 100;
-    width: 90%;
-    max-width: 400px;
+    width: 75%;
+    max-width: 240px;
     pointer-events: none;
-    padding: 15px;
+    padding: 6px;
     background: radial-gradient(circle at center, rgba(255, 140, 66, 0.05) 0%, transparent 70%);
-    border-radius: 20px;
+    border-radius: 12px;
 }
 
 .rune-card:hover .rune-expanded-content {
     opacity: 1;
-    /* Move to center and scale up */
-    transform: translate(-50%, -50%) scale(1.08) rotateY(0deg);
+    /* Move to center and scale up (reduced) */
+    transform: translate(-50%, -50%) scale(0.85) rotateY(0deg);
     pointer-events: auto;
     background: radial-gradient(circle at center, rgba(255, 140, 66, 0.08) 0%, transparent 70%);
 }
 
 /* Icon Styling */
 .rune-expanded-content i {
-    font-size: 2.2rem;
+    font-size: 1.25rem;
     color: #eaa355;
     transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 0 rgba(255, 140, 66, 0));
@@ -783,7 +785,7 @@
     text-shadow: 0 0 25px rgba(234, 163, 85, 0.6);
 
     opacity: 1;
-    transform: translateY(-5px) scale(1.15);
+    transform: translateY(-4px) scale(1.05);
     /* text-shadow: 0 0 10px rgba(255, 140, 66, 0.9), 0 0 20px rgba(255, 140, 66, 0.6); */
     filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 12px rgba(255, 140, 66, 0.7));
 }
@@ -1248,12 +1250,78 @@
     padding-bottom: 3rem;
 }
 
+/* Certifications Grid */
+.certifications-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0.5rem 0;
+}
+
+.cert-card,
+a.cert-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem 1rem;
+    background: linear-gradient(135deg, rgba(26, 42, 75, 0.6) 0%, rgba(26, 22, 37, 0.8) 100%);
+    border: 1px solid rgba(212, 165, 116, 0.15);
+    border-radius: 10px;
+    transition: all 0.25s ease;
+    text-decoration: none;
+    color: inherit;
+}
+
+.cert-card:hover,
+a.cert-card:hover {
+    border-color: rgba(212, 165, 116, 0.5);
+    transform: translateX(6px);
+    box-shadow: 0 4px 20px rgba(212, 165, 116, 0.15);
+}
+
+.cert-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(212, 165, 116, 0.1);
+    border-radius: 50%;
+    color: var(--gold);
+    font-size: 1.1rem;
+}
+
+.cert-card:hover .cert-icon {
+    background: rgba(212, 165, 116, 0.25);
+    box-shadow: 0 0 12px rgba(212, 165, 116, 0.3);
+}
+
+.cert-info h4 {
+    color: #e0d5c0;
+    font-family: 'Crimson Text', serif;
+    font-size: 1rem;
+    margin: 0 0 0.2rem 0;
+    line-height: 1.3;
+}
+
+.cert-issuer {
+    font-size: 0.8rem;
+    color: var(--gold);
+    opacity: 0.7;
+    letter-spacing: 0.5px;
+}
+
 .knowledge-grid {
     display: grid;
     grid-template-columns: 1fr 2px 1fr;
     gap: 2rem;
     align-items: start;
     margin-top: 1rem;
+}
+
+.knowledge-grid.knowledge-grid-3col {
+    grid-template-columns: 1fr 2px 1fr 2px 1fr;
 }
 
 .knowledge-divider {
@@ -1306,6 +1374,21 @@
 }
 
 /* Responsive Stacking */
+@media (max-width: 1024px) {
+    .knowledge-grid.knowledge-grid-3col {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .knowledge-grid.knowledge-grid-3col .knowledge-divider {
+        width: 100%;
+        height: 1px;
+        min-height: 1px;
+        background: linear-gradient(to right, transparent, var(--gold), transparent);
+        margin: 1rem 0;
+    }
+}
+
 @media (max-width: 768px) {
     .knowledge-grid {
         grid-template-columns: 1fr;
