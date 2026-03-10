@@ -168,6 +168,14 @@
     margin-top: 1rem;
 }
 
+/* Align icons to the right for specific cards */
+.book-footer.align-right {
+    /* Place the GitHub icon at the left and the external link at the right */
+    justify-content: space-between;
+    gap: 0.6rem;
+    width: 100%;
+}
+
 .book-github-link {
     color: #eaa355;
     font-size: 1.25rem;
@@ -182,6 +190,11 @@
     border: 1px solid rgba(234, 163, 85, 0.2);
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Make external link icon slightly smaller without changing GitHub icon */
+.book-github-link.external-link {
+    font-size: 1.05rem;
 }
 
 .book-github-link:hover {
