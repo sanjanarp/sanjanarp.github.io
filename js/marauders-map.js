@@ -14,14 +14,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const containerRect = svgContainer.getBoundingClientRect();
 
-        // Pairs: 0->1, 1->2, 2->3 with custom blue-line logic
+        // Pairs: 0->1, 1->2, 2->3, 3->4 with custom blue-line logic
         const connections = [
             // Path 1: Card 1 Right -> Card 2 Top (High Arcing "Blue Line")
             { startSide: 'right', endSide: 'top', type: 'high-arc' },
             // Path 2: Card 2 Left -> Card 3 Top (S-Curve Down)
             { startSide: 'left', endSide: 'top', type: 'mid-drop' },
             // Path 3: Card 3 Bottom -> Card 4 Left (Scoop)
-            { startSide: 'bottom', endSide: 'left', type: 'low-scoop' }
+            { startSide: 'bottom', endSide: 'left', type: 'low-scoop' },
+            // Path 4: Card 4 Bottom -> Card 5 Left (Lower Arc)
+            { startSide: 'bottom', endSide: 'left', type: 'lower-arc' }
         ];
 
         for (let i = 0; i < Math.min(cards.length - 1, connections.length); i++) {
@@ -62,6 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (config.type === 'low-scoop') {
                 // Bottom to Left: Deep Scoop (Down then Left)
                 pathD = `M ${startPt.x} ${startPt.y} C ${startPt.x + 20} ${startPt.y + 120}, ${endPt.x - 120} ${endPt.y + 20}, ${endPt.x} ${endPt.y}`;
+            } else if (config.type === 'lower-arc') {
+                // Lower Arc: Curves down and around below
+                pathD = `M ${startPt.x} ${startPt.y} C ${startPt.x + 60} ${startPt.y + 100}, ${endPt.x - 60} ${endPt.y + 40}, ${endPt.x} ${endPt.y}`;
             } else {
                 // Fallback Linear
                 pathD = `M ${startPt.x} ${startPt.y} L ${endPt.x} ${endPt.y}`;
