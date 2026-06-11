@@ -331,9 +331,9 @@
 .wax-seal {
     width: 36px;
     height: 36px;
-    background: #740001;
+    background: #6e2655;
     border-radius: 50%;
-    border: 3px solid #5a0000;
+    border: 3px solid #481838;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
     position: absolute;
     top: 55px;
@@ -1723,7 +1723,7 @@ a.cert-card:hover {
     /* Subtle grid guidelines for writing */
     background-size: 100% 3rem;
     /* Line height */
-    padding: 1.5rem;
+    padding: 1.5rem 1.5rem 2rem;
 
     /* padding: 5rem 3rem 4rem; */
     border-radius: 4px;
@@ -1811,13 +1811,14 @@ a.cert-card:hover {
 .owl-post-form {
     display: flex;
     flex-direction: column;
-    /* gap: 2rem; */
-    margin-top: 2rem;
+    gap: 0.5rem;
+    margin-top: 1rem;
 }
 
 .form-group {
     position: relative;
-    margin-bottom: 1.5rem;
+    /* Reserve just enough space ABOVE the input for the floated label */
+    padding-top: 1rem;
 }
 
 .quill-input {
@@ -1833,6 +1834,7 @@ a.cert-card:hover {
     padding: 0.5rem 0;
     outline: none;
     transition: border-color 0.3s ease;
+    display: block;
 }
 
 .quill-input:focus {
@@ -1843,7 +1845,8 @@ a.cert-card:hover {
 /* Floating Label Animation */
 .form-group label {
     position: absolute;
-    top: 0.6rem;
+    /* Sits at the input's text baseline (padding-top 1rem + input padding-top 0.5rem + small offset) */
+    top: 1.6rem;
     left: 0;
     font-size: 1rem;
     color: #8b5e3c;
@@ -1854,44 +1857,41 @@ a.cert-card:hover {
 
 .quill-input:focus~label,
 .quill-input:not(:placeholder-shown)~label {
-    top: -2rem;
+    /* Lifts into the reserved padding-top area — safely inside the form-group, never above it */
+    top: 0;
     font-size: 0.8rem;
     color: #4a2c2a;
     font-weight: bold;
 }
 
-/* Textarea needs slightly larger lift to clear space when focused */
-textarea.quill-input:focus~label,
-textarea.quill-input:not(:placeholder-shown)~label {
-    top: -2.6rem;
-    font-size: 0.8rem;
-    color: #4a2c2a;
-    font-weight: bold;
-}
-
-/* Slightly more padding for textarea to avoid overlap */
 textarea.quill-input {
-    padding: 0.7rem 0;
+    padding: 0.5rem 0;
+    resize: vertical;
+    min-height: 4.5rem;
 }
 
 /* Wax Seal Button */
 .wax-seal-btn {
     align-self: flex-end;
     /* Right align like a stamp */
-    /* margin-top: 1rem; */
+    margin-top: 0.5rem;
     width: 80px;
     height: 80px;
     border: none;
     border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, #da3e3e, #9e1b1b);
-    color: #580000;
+    background:
+        radial-gradient(circle at 35% 28%, #5a1a3c 0%, #3a0e26 38%, #1f0714 72%, #0c0207 100%);
+    color: #b8945e;
     font-family: 'Cinzel Decorative', serif;
     font-weight: 900;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     cursor: pointer;
     box-shadow:
-        0 4px 10px rgba(0, 0, 0, 0.4),
-        inset 0 0 20px rgba(0, 0, 0, 0.3);
+        0 8px 18px rgba(0, 0, 0, 0.75),
+        0 2px 5px rgba(0, 0, 0, 0.55),
+        inset -5px -8px 14px rgba(0, 0, 0, 0.75),
+        inset 4px 5px 9px rgba(140, 60, 100, 0.22),
+        inset 0 0 0 1.5px rgba(0, 0, 0, 0.6);
     position: relative;
     transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: flex;
@@ -1900,12 +1900,28 @@ textarea.quill-input {
 }
 
 .wax-seal-btn::before {
-    /* Inner ring effect */
+    /* Inner pressed ridge — antique gold dashed ring */
     content: '';
     position: absolute;
-    inset: 8px;
-    border: 2px dashed rgba(88, 0, 0, 0.3);
+    inset: 9px;
+    border: 1.5px dashed rgba(184, 148, 94, 0.4);
     border-radius: 50%;
+    pointer-events: none;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.55);
+}
+
+.wax-seal-btn::after {
+    /* Subtle glossy highlight where light hits the wax */
+    content: '';
+    position: absolute;
+    top: 11%;
+    left: 20%;
+    width: 30%;
+    height: 18%;
+    background: radial-gradient(ellipse at center, rgba(180, 110, 150, 0.3), rgba(180, 110, 150, 0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(3px);
 }
 
 .wax-seal-btn:hover {
@@ -1918,6 +1934,13 @@ textarea.quill-input {
 
 .seal-text {
     transform: rotate(-10deg);
+    position: relative;
+    z-index: 2;
+    letter-spacing: 0.5px;
+    text-shadow:
+        0 1px 0 rgba(200, 160, 110, 0.25),
+        0 -1px 1px rgba(0, 0, 0, 0.9),
+        0 -2px 3px rgba(0, 0, 0, 0.6);
 }
 
 /* Main Footer Styling */
@@ -1958,7 +1981,7 @@ textarea.quill-input {
     }
 
     .parchment-scroll {
-        padding: 1.5rem 1rem;
+        padding: 1.5rem 1rem 2rem;
         background-size: 100% 2.5rem;
         /* Smaller line height */
     }
