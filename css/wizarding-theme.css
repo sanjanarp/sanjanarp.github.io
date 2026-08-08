@@ -1492,7 +1492,7 @@ a.cert-card:hover {
     /* Aligned with timeline start */
     left: 0;
     width: 100%;
-    height: 900px;
+    height: 1500px;
     opacity: 0.5;
     z-index: 1;
 }
@@ -1522,7 +1522,7 @@ a.cert-card:hover {
     /* Centered in the 0x0 parent */
     transform-origin: center;
 }
-
+ 
 @keyframes stepFade {
     0% {
         opacity: 0;
@@ -1530,27 +1530,27 @@ a.cert-card:hover {
         /* Start tiny */
         filter: drop-shadow(0 0 0 transparent);
     }
-
+ 
     10% {
         opacity: 1;
         transform: scale(0.8);
         /* Land small */
         filter: drop-shadow(0 0 3px #eaa355);
     }
-
+ 
     25% {
         opacity: 1;
         transform: scale(0.9);
         /* Subtle pulse */
         filter: drop-shadow(0 0 6px #eaa355);
     }
-
+ 
     50% {
         opacity: 0;
         transform: scale(0.8);
         filter: drop-shadow(0 0 2px #eaa355);
     }
-
+ 
     100% {
         opacity: 0;
     }
@@ -1560,8 +1560,8 @@ a.cert-card:hover {
 .haphazard-roadmap .timeline {
     position: relative;
     width: 100%;
-    height: 1350px;
-    /* Expanded height for 5 items */
+    height: 1500px;
+    /* Expanded height for 6 items */
     margin-top: 2.5rem;
     z-index: 10;
     border-left: none;
@@ -1590,27 +1590,33 @@ a.cert-card:hover {
 }
 
 .item-pos-2 {
-    top: 250px;
+    top: 230px;
     right: 5%;
     transform: rotate(0.6deg);
 }
 
 .item-pos-3 {
-    top: 500px;
+    top: 460px;
     left: 8%;
     transform: rotate(-0.5deg);
 }
 
 .item-pos-4 {
-    top: 750px;
+    top: 690px;
     right: 8%;
     transform: rotate(0.3deg);
 }
 
 .item-pos-5 {
-    top: 1000px;
+    top: 920px;
     left: 5%;
     transform: rotate(-0.4deg);
+}
+
+.item-pos-6 {
+    top: 1150px;
+    right: 5%;
+    transform: rotate(0.3deg);
 }
 
 .haphazard-roadmap .timeline-content h3 {
