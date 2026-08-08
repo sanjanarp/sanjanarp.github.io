@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const containerRect = svgContainer.getBoundingClientRect();
 
-        // Pairs: 0->1, 1->2, 2->3, 3->4 with custom blue-line logic
+        // Pairs: 0->1, 1->2, 2->3, 3->4, 4->5 with custom blue-line logic
         const connections = [
             // Path 1: Card 1 Right -> Card 2 Top (High Arcing "Blue Line")
             { startSide: 'right', endSide: 'top', type: 'high-arc' },
@@ -23,6 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // Path 3: Card 3 Bottom -> Card 4 Left (Scoop)
             { startSide: 'bottom', endSide: 'left', type: 'low-scoop' },
             // Path 4: Card 4 Bottom -> Card 5 Left (Lower Arc)
+            { startSide: 'bottom', endSide: 'left', type: 'lower-arc' },
+            // Path 5: Card 5 Bottom -> Card 6 Left (Lower Arc)
             { startSide: 'bottom', endSide: 'left', type: 'lower-arc' }
         ];
 
