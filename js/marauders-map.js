@@ -35,23 +35,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const startRect = startCard.getBoundingClientRect();
             const endRect = endCard.getBoundingClientRect();
+            const edgeBuffer = 28;
 
             // Helper to get anchor coordinates relative to container
-            const getAnchor = (rect, side) => {
+            const getAnchor = (rect, side, inset = 0) => {
                 const relLeft = rect.left - containerRect.left;
                 const relTop = rect.top - containerRect.top;
 
                 switch (side) {
-                    case 'right': return { x: relLeft + rect.width, y: relTop + rect.height * 0.3 }; // Slightly top-right
-                    case 'left': return { x: relLeft, y: relTop + rect.height * 0.5 };
-                    case 'top': return { x: relLeft + rect.width * 0.5, y: relTop };
-                    case 'bottom': return { x: relLeft + rect.width * 0.7, y: relTop + rect.height }; // Slightly right-bottom
+                    case 'right': return { x: relLeft + rect.width - inset, y: relTop + rect.height * 0.3 }; // Slightly top-right
+                    case 'left': return { x: relLeft + inset, y: relTop + rect.height * 0.5 };
+                    case 'top': return { x: relLeft + rect.width * 0.5, y: relTop + inset };
+                    case 'bottom': return { x: relLeft + rect.width * 0.7, y: relTop + rect.height - inset }; // Slightly right-bottom
                     default: return { x: relLeft + rect.width / 2, y: relTop + rect.height / 2 };
                 }
             };
 
-            const startPt = getAnchor(startRect, config.startSide);
-            const endPt = getAnchor(endRect, config.endSide);
+            const startPt = getAnchor(startRect, config.startSide, edgeBuffer);
+            const endPt = getAnchor(endRect, config.endSide, edgeBuffer);
 
             // Connected directly to borders (no buffer) for seamless link
 
